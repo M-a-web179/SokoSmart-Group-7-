@@ -1,0 +1,51 @@
+# ---------- Secrets & environment (NEVER commit) ----------
+.env
+.env.*
+!.env.example
+config.local.yml
+*.pem
+*.key
+secrets/
+*.tfvars
+!*.tfvars.example
+
+# ---------- Dependencies ----------
+node_modules/
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---------- Build artifacts ----------
+build/
+dist/
+*.egg-info/
+.coverage
+htmlcov/
+coverage/
+
+# ---------- Terraform ----------
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# ---------- Logs ----------
+*.log
+logs/
+npm-debug.log*
+
+# ---------- IDE / editor ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---------- OS files ----------
+.DS_Store
+Thumbs.db
+desktop.ini
