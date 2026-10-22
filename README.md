@@ -1,4 +1,4 @@
-# 🌽 SokoSmart
+# SokoSmart
 
 > **Know the market price before you go to market.**
 
