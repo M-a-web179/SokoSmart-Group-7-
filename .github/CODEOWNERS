@@ -2,8 +2,8 @@
 *                     @MEMBER1_USERNAME
 
 # Application code
-/services/            @MEMBER1_USERNAME @MEMBER2_USERNAME
+/services/            @MMatthew Ainomugisha @MEMBER2_USERNAME
 
 # CI/CD and infrastructure
-/.github/             @MEMBER1_USERNAME @MEMBER2_USERNAME
-/infra/               @MEMBER3_USERNAME
+/.github/             @Matthew Ainomugisha @MEMBER2_USERNAME
+/infra/               @MEMBER3_USERNAME @MEMBER4_USERNAME
