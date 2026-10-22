@@ -1,0 +1,14 @@
+[
+  {"crop": "Maize",    "market": "Kimironko",  "price": 450,  "reported_on": "2026-10-20"},
+  {"crop": "Maize",    "market": "Nyabugogo",  "price": 420,  "reported_on": "2026-10-20"},
+  {"crop": "Maize",    "market": "Musanze",    "price": 390,  "reported_on": "2026-10-21"},
+  {"crop": "Beans",    "market": "Kimironko",  "price": 900,  "reported_on": "2026-10-20"},
+  {"crop": "Beans",    "market": "Nyabugogo",  "price": 870,  "reported_on": "2026-10-21"},
+  {"crop": "Beans",    "market": "Huye",       "price": 940,  "reported_on": "2026-10-19"},
+  {"crop": "Tomatoes", "market": "Kimironko",  "price": 600,  "reported_on": "2026-10-21"},
+  {"crop": "Tomatoes", "market": "Musanze",    "price": 520,  "reported_on": "2026-10-21"},
+  {"crop": "Rice",     "market": "Nyabugogo",  "price": 1100, "reported_on": "2026-10-20"},
+  {"crop": "Rice",     "market": "Huye",       "price": 1150, "reported_on": "2026-10-18"},
+  {"crop": "Potatoes", "market": "Musanze",    "price": 350,  "reported_on": "2026-10-21"},
+  {"crop": "Potatoes", "market": "Kimironko",  "price": 420,  "reported_on": "2026-10-20"}
+]
