@@ -108,3 +108,38 @@ On Windows PowerShell use `curl.exe` or `Invoke-RestMethod`, or simply open the 
 
 ## License
 MIT. See [LICENSE](LICENSE).
+
+## Optional PostgreSQL persistence (Member 2)
+
+The default mode still uses JSON-seeded in-memory data. To preserve reports across
+restarts, create an empty PostgreSQL database and, from `services/price-service`:
+
+```bash
+pip install -r requirements-postgres.txt
+export DATABASE_URL='postgresql://USER:PASSWORD@localhost:5432/sokosmart'
+python -m flask --app run init-db
+python run.py
+```
+
+Use your own local database credentials. Export environment variables explicitly;
+`run.py` does not automatically read `.env`. Never commit credentials. In database
+mode the database starts empty, and the app does not seed or alter tables on
+startup. Add reports with `POST /api/prices` using the example above. `init-db` is
+repeatable and preserves existing rows; it is an initial development schema,
+not a production migration system. No automatic fallback occurs on database failure.
+
+For integration tests, create a **separate disposable database** and run:
+
+```bash
+pip install -r requirements-dev.txt -r requirements-postgres.txt
+export TEST_DATABASE_URL='postgresql://USER:PASSWORD@localhost:5432/sokosmart_test'
+pytest -v
+```
+
+**The integration tests truncate the `prices` table in TEST_DATABASE_URL. Never
+point it at a database with real data.** Without that variable, PostgreSQL tests
+are skipped and the original in-memory tests still run. CI uses an isolated
+PostgreSQL service to verify persistence, parameterized inserts, and schema setup.
+
+Next steps: versioned migrations, connection pooling, stricter date/unit/currency
+validation, and production database operations belong to the PostgreSQL rollout.

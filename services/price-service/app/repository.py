@@ -1,8 +1,16 @@
 import json
 from pathlib import Path
-from typing import List
+from typing import List, Protocol
 
 from .models import PriceEntry
+
+
+class PriceRepository(Protocol):
+    def all(self) -> List[PriceEntry]: ...
+
+    def add(
+        self, crop, market, price, unit="kg", currency="RWF", reported_on=""
+    ) -> PriceEntry: ...
 
 
 class InMemoryPriceRepository:
@@ -13,8 +21,12 @@ class InMemoryPriceRepository:
     def all(self) -> List[PriceEntry]:
         return list(self._entries)
 
-    def add(self, crop, market, price, unit="kg", currency="RWF", reported_on="") -> PriceEntry:
-        entry = PriceEntry(self._next_id, crop, market, price, unit, currency, reported_on)
+    def add(
+        self, crop, market, price, unit="kg", currency="RWF", reported_on=""
+    ) -> PriceEntry:
+        entry = PriceEntry(
+            self._next_id, crop, market, price, unit, currency, reported_on
+        )
         self._entries.append(entry)
         self._next_id += 1
         return entry

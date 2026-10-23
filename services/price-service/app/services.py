@@ -1,11 +1,11 @@
 from datetime import date
 from typing import Dict, List, Optional
 
-from .repository import InMemoryPriceRepository
+from .repository import PriceRepository
 
 
 class PriceService:
-    def __init__(self, repo: InMemoryPriceRepository) -> None:
+    def __init__(self, repo: PriceRepository) -> None:
         self.repo = repo
 
     def list_prices(self, crop: Optional[str] = None, market: Optional[str] = None) -> List[dict]:
