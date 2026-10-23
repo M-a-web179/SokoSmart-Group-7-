@@ -1,0 +1,13 @@
+# Copy to terraform.tfvars and edit. Never commit terraform.tfvars (gitignored).
+
+aws_region    = "eu-west-1"
+project       = "sokosmart"
+environment   = "dev"
+desired_tasks = 2
+
+# Set to the ECR image once CI pushes it, e.g.:
+# container_image = "<account-id>.dkr.ecr.eu-west-1.amazonaws.com/sokosmart/price-service:v1.0.0"
+# container_image = ""
+
+# Set to false when applying with real credentials
+# plan_only = false
