@@ -17,8 +17,6 @@ Menu levels:
 In any menu, ``0`` exits and ``00`` goes back one level.
 """
 
-from typing import List
-
 from .services import PriceService
 
 BACK = "00"
@@ -35,8 +33,6 @@ class UssdMenuHandler:
             return self._main_menu()
         return self._dispatch(parts)
 
-    # ------------------------------------------------------------------ menus
-
     def _main_menu(self) -> str:
         return _con(
             "Welcome to SokoSmart",
@@ -47,7 +43,7 @@ class UssdMenuHandler:
             f"{EXIT}. Exit",
         )
 
-    def _crops(self) -> List[str]:
+    def _crops(self) -> list[str]:
         return sorted({row["crop"] for row in self.service.summary()})
 
     def _crop_menu(self) -> str:
@@ -94,9 +90,7 @@ class UssdMenuHandler:
         ]
         return _end("Price summary (avg, min-max)", *lines)
 
-    # ------------------------------------------------------- report a price
-
-    def _report(self, parts: List[str]) -> str:
+    def _report(self, parts: list[str]) -> str:
         inputs = parts[1:]
         if len(inputs) == 0:
             return _con("Report a price", "Enter the crop name (e.g. Maize)", f"{BACK}. Back")
@@ -118,9 +112,7 @@ class UssdMenuHandler:
             f"Thank you! {crop.title()} in {market.title()} recorded at {float(price):g} RWF/kg."
         )
 
-    # -------------------------------------------------------------- dispatch
-
-    def _dispatch(self, parts: List[str]) -> str:
+    def _dispatch(self, parts: list[str]) -> str:
         choice = parts[0]
         if choice == EXIT:
             return _end("Thank you for using SokoSmart. Know the price before you go!")

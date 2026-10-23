@@ -30,9 +30,11 @@ def ussd_callback():
 @ussd.get("/ussd")
 def ussd_info():
     return (
-        "SokoSmart USSD endpoint.\n"
-        "POST to /ussd with form field 'text' (menu inputs joined by '*').\n"
-        "Try it interactively: python ussd_simulator.py\n",
+        (
+            "SokoSmart USSD endpoint.\n"
+            "POST to /ussd with form field 'text' (menu inputs joined by '*').\n"
+            "Try it interactively: python ussd_simulator.py\n"
+        ),
         200,
         {"Content-Type": "text/plain; charset=utf-8"},
     )
