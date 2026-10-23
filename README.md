@@ -18,7 +18,8 @@ Smallholder farmers often sell crops without knowing current prices in nearby ma
 2. **Report a price** with validation (crop, market, price, unit, date)
 3. **Price summary**: average, min, max, cheapest and most expensive market per crop
 4. **Market comparison** for one crop, cheapest first
-5. *(Planned)* USSD menu for feature-phone users and a web dashboard
+5. **Web dashboard** at `/` — price summary cards, market comparison and price reporting in the browser
+6. *(Planned)* USSD menu for feature-phone users
 
 ## Technology Stack
 | Layer | Choice |
@@ -29,15 +30,16 @@ Smallholder farmers often sell crops without knowing current prices in nearby ma
 | Testing | pytest |
 | CI/CD | GitHub Actions |
 | Containers (planned) | Docker, Docker Compose |
-| Cloud / IaC (planned) | Terraform on AWS |
+| Cloud / IaC | Terraform on AWS — verified plan in `infra/` |
 
 ## Project Structure
 ```
 sokosmart/
 ├── .github/                 # CODEOWNERS, PR template, CI workflow
 ├── docs/                    # Architecture notes
-├── infra/                   # Terraform (planned)
+├── infra/                   # Terraform plan (ECS Fargate + ALB), see infra/README.md
 ├── scripts/                 # Helper scripts (issue creation)
+├── CONTRIBUTING.md          # How we work: branches, commits, PR rules
 └── services/
     └── price-service/
         ├── app/
@@ -45,7 +47,10 @@ sokosmart/
         │   ├── services.py      # Business logic
         │   ├── repository.py    # Data access
         │   ├── models.py        # Data models
-        │   └── config.py        # Env-based config
+        │   ├── config.py        # Env-based config
+        │   ├── dashboard.py     # Web dashboard route
+        │   ├── templates/       # dashboard.html
+        │   └── static/          # dashboard CSS + JS
         ├── data/seed_prices.json
         ├── tests/
         ├── requirements.txt
@@ -75,6 +80,7 @@ cp .env.example .env              # Windows: copy .env.example .env
 
 # 5. Run the app  ->  http://localhost:5000
 python run.py
+# Open http://localhost:5000/ in your browser for the web dashboard
 
 # 6. Run the tests
 pytest -v
@@ -105,6 +111,11 @@ On Windows PowerShell use `curl.exe` or `Invoke-RestMethod`, or simply open the 
 - Branch names: `feature/<name>`, `fix/<name>`, `devops/<name>`, `docs/<name>`.
 - Commit style: `feat:`, `fix:`, `docs:`, `chore:`, `test:`, `ci:`.
 - Every PR links an issue and is tracked on the GitHub Projects board.
+- Full guide: [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Deployment (planned)
+The `infra/` directory contains a verified Terraform plan (ECS Fargate behind
+an ALB, ECR image scanning, CloudWatch logs). See [infra/README.md](infra/README.md).
 
 ## License
 MIT. See [LICENSE](LICENSE).
