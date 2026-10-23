@@ -1,5 +1,4 @@
 from datetime import date
-from typing import Dict, List, Optional
 
 from .repository import InMemoryPriceRepository
 
@@ -8,7 +7,7 @@ class PriceService:
     def __init__(self, repo: InMemoryPriceRepository) -> None:
         self.repo = repo
 
-    def list_prices(self, crop: Optional[str] = None, market: Optional[str] = None) -> List[dict]:
+    def list_prices(self, crop: str | None = None, market: str | None = None) -> list[dict]:
         entries = self.repo.all()
         if crop:
             entries = [e for e in entries if e.crop.lower() == crop.strip().lower()]
@@ -16,7 +15,7 @@ class PriceService:
             entries = [e for e in entries if e.market.lower() == market.strip().lower()]
         return [e.to_dict() for e in entries]
 
-    def _latest_per_market(self, crop: str) -> Dict[str, object]:
+    def _latest_per_market(self, crop: str) -> dict[str, object]:
         latest = {}
         for e in self.repo.all():
             if e.crop.lower() != crop.strip().lower():
@@ -47,7 +46,7 @@ class PriceService:
             ],
         }
 
-    def summary(self) -> List[dict]:
+    def summary(self) -> list[dict]:
         """Average/min/max price per crop, based on the latest price in each market."""
         crops = sorted({e.crop for e in self.repo.all()})
         result = []
