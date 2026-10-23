@@ -59,7 +59,7 @@ The routes → services → repository layering keeps concerns separate so the s
 
 ```bash
 # 1. Clone
-git clone https://github.com/<ORG_OR_USER>/sokosmart.git
+git clone https://github.com/M-a-web179/SokoSmart-Group-7-.git
 cd sokosmart/services/price-service
 
 # 2. Create and activate a virtual environment
