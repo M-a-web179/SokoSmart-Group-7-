@@ -11,5 +11,11 @@ from app import create_app  # noqa: E402
 
 @pytest.fixture()
 def client():
-    app = create_app({"TESTING": True, "SEED_FILE": str(ROOT / "data" / "seed_prices.json")})
+    app = create_app(
+        {
+            "TESTING": True,
+            "DATABASE_URL": "",
+            "SEED_FILE": str(ROOT / "data" / "seed_prices.json"),
+        }
+    )
     return app.test_client()

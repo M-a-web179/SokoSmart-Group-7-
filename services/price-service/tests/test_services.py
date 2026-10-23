@@ -1,5 +1,4 @@
 import pytest
-
 from app.repository import InMemoryPriceRepository
 from app.services import PriceService
 

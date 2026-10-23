@@ -2,7 +2,6 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
   push:
     branches: [main]
 
@@ -20,4 +19,35 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements-dev.txt
       - name: Run tests
+        run: pytest -v
+
+  postgres-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: sokosmart
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: sokosmart_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    defaults:
+      run:
+        working-directory: services/price-service
+    env:
+      TEST_DATABASE_URL: postgresql://sokosmart:ci-only-password@localhost:5432/sokosmart_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test and PostgreSQL dependencies
+        run: pip install -r requirements-dev.txt -r requirements-postgres.txt
+      - name: Test PostgreSQL persistence and API
         run: pytest -v
