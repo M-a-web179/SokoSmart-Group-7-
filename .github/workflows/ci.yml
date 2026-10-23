@@ -2,11 +2,30 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/price-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install development dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Lint Python
+        run: ruff check .
+      - name: Check Python formatting
+        run: ruff format --check .
+
   test:
     runs-on: ubuntu-latest
     defaults:
