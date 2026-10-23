@@ -108,3 +108,17 @@ On Windows PowerShell use `curl.exe` or `Invoke-RestMethod`, or simply open the 
 
 ## License
 MIT. See [LICENSE](LICENSE).
+
+## Code quality checks
+
+From `services/price-service`, install `requirements-dev.txt` and run:
+
+```bash
+ruff check .
+ruff format --check .
+pytest -v
+```
+
+To apply formatting locally, use `ruff format .`. CI runs separate `lint` and
+`test` jobs for pull requests to `main`. Maintainers should require both checks
+in branch protection after the checks have run.

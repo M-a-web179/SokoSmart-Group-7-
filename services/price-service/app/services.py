@@ -56,17 +56,19 @@ class PriceService:
             prices = [e.price for e in rows]
             cheapest = min(rows, key=lambda e: e.price)
             priciest = max(rows, key=lambda e: e.price)
-            result.append({
-                "crop": crop,
-                "average_price": round(sum(prices) / len(prices), 2),
-                "min_price": cheapest.price,
-                "max_price": priciest.price,
-                "cheapest_market": cheapest.market,
-                "most_expensive_market": priciest.market,
-                "markets_reporting": len(rows),
-                "currency": rows[0].currency,
-                "unit": rows[0].unit,
-            })
+            result.append(
+                {
+                    "crop": crop,
+                    "average_price": round(sum(prices) / len(prices), 2),
+                    "min_price": cheapest.price,
+                    "max_price": priciest.price,
+                    "cheapest_market": cheapest.market,
+                    "most_expensive_market": priciest.market,
+                    "markets_reporting": len(rows),
+                    "currency": rows[0].currency,
+                    "unit": rows[0].unit,
+                }
+            )
         return result
 
     def add_price(self, data: dict) -> dict:

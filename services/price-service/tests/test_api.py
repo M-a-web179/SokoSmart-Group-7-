@@ -21,9 +21,17 @@ def test_add_price_success(client):
 
 
 def test_add_price_validation(client):
-    assert client.post("/api/prices", json={"crop": "Maize", "market": "X", "price": -5}).status_code == 400
+    assert (
+        client.post("/api/prices", json={"crop": "Maize", "market": "X", "price": -5}).status_code
+        == 400
+    )
     assert client.post("/api/prices", json={"market": "X", "price": 5}).status_code == 400
-    assert client.post("/api/prices", json={"crop": "Maize", "market": "X", "price": "abc"}).status_code == 400
+    assert (
+        client.post(
+            "/api/prices", json={"crop": "Maize", "market": "X", "price": "abc"}
+        ).status_code
+        == 400
+    )
     assert client.post("/api/prices", data="not json").status_code == 400
 
 
