@@ -120,5 +120,5 @@ pytest -v
 ```
 
 To apply formatting locally, use `ruff format .`. CI runs separate `lint` and
-`test` jobs for pull requests to `main`. Maintainers should require both checks
+`test` jobs for pull requests to any branch. Maintainers should require both checks
 in branch protection after the checks have run.
