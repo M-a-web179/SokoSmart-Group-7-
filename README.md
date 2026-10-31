@@ -100,6 +100,46 @@ On Windows PowerShell use `curl.exe` or `Invoke-RestMethod`, or simply open the 
 | GET | `/api/prices/summary` | Per-crop statistics |
 | GET | `/api/crops/<crop>/compare` | Compare markets for a crop |
 
+## Docker
+
+### Prerequisites
+
+- Git
+- Docker Desktop with Docker Compose
+- A GitHub account
+
+### Clone and run the application
+
+```powershell
+git clone https://github.com/M-a-web179/SokoSmart-Group-7-.git
+Set-Location SokoSmart-Group-7-
+Copy-Item .env.example .env
+docker compose up --build
+```
+
+Open the application at <http://localhost:5000>. Check service health at <http://localhost:5000/health>.
+
+Stop the application with:
+
+```powershell
+docker compose down
+```
+
+### Troubleshooting
+
+- Port 5000 is already in use: change `APP_PORT` in `.env`.
+- The container exits immediately: inspect it with `docker compose logs app`.
+- The Docker daemon is not running: start Docker Desktop.
+- Dependencies changed: rebuild with `docker compose up --build`.
+
+## CI/CD
+
+GitHub Actions runs these checks on pushes to branches other than `main` and on pull requests targeting `main`:
+
+- `lint`: `ruff check`
+- `test`: `pytest -v`
+- `docker`: build the image from the repository root without pushing it.
+
 ## Team Workflow
 - `main` is protected: **no direct pushes**; all changes go through pull requests with at least 1 approval.
 - Branch names: `feature/<name>`, `fix/<name>`, `devops/<name>`, `docs/<name>`.
