@@ -3,7 +3,7 @@ FROM python:3.11.13-slim-bookworm AS builder
 # Keep dependency artifacts outside the application source tree.
 WORKDIR /build
 # Copy dependencies first so application edits do not invalidate this layer.
-COPY services/price-service/requirements-demo-missing.txt ./requirements.txt
+COPY services/price-service/requirements.txt ./requirements.txt
 # Build wheels for all production dependencies from the service requirements.
 RUN pip wheel --no-cache-dir --wheel-dir /wheels -r requirements.txt
 # Start a clean runtime stage from the same pinned Python base image.
