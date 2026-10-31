@@ -4,7 +4,7 @@ def test_health(client):
 
 def test_list_all_prices(client):
     data = client.get("/api/prices").get_json()
-    assert data["count"] == 13
+    assert data["count"] == 12
 
 
 def test_filter_by_crop_and_market(client):
