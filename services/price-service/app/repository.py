@@ -1,16 +1,15 @@
 import json
 from pathlib import Path
-from typing import List
 
 from .models import PriceEntry
 
 
 class InMemoryPriceRepository:
     def __init__(self) -> None:
-        self._entries: List[PriceEntry] = []
+        self._entries: list[PriceEntry] = []
         self._next_id = 1
 
-    def all(self) -> List[PriceEntry]:
+    def all(self) -> list[PriceEntry]:
         return list(self._entries)
 
     def add(self, crop, market, price, unit="kg", currency="RWF", reported_on="") -> PriceEntry:

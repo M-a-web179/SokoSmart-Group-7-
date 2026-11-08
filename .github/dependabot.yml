@@ -1,0 +1,41 @@
+version: 2
+updates:
+  # Python dependencies (price-service)
+  - package-ecosystem: "pip"
+    directory: "/services/price-service"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "security"
+
+  # GitHub Actions workflow versions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "devops"
+
+  # Docker base images
+  - package-ecosystem: "docker"
+    directory: "/services/price-service"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "devops"
+
+  # Terraform providers/modules (infra/)
+  - package-ecosystem: "terraform"
+    directory: "/infra"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "devops"
