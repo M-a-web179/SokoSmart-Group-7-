@@ -30,14 +30,14 @@ Smallholder farmers often sell crops without knowing current prices in nearby ma
 | Testing | pytest |
 | CI/CD | GitHub Actions |
 | Containers (planned) | Docker, Docker Compose |
-| Cloud / IaC | Terraform on AWS — verified plan in `infra/` |
+| Cloud / IaC (planned) | Terraform on AWS |
 
 ## Project Structure
 ```
 sokosmart/
 ├── .github/                 # CODEOWNERS, PR template, CI workflow
 ├── docs/                    # Architecture notes
-├── infra/                   # Terraform plan (ECS Fargate + ALB), see infra/README.md
+├── infra/                   # Terraform (planned)
 ├── scripts/                 # Helper scripts (issue creation)
 ├── CONTRIBUTING.md          # How we work: branches, commits, PR rules
 └── services/
@@ -154,8 +154,8 @@ GitHub Actions runs these checks on pushes to branches other than `main` and on 
 - Full guide: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Deployment (planned)
-The `infra/` directory contains a verified Terraform plan (ECS Fargate behind
-an ALB, ECR image scanning, CloudWatch logs). See [infra/README.md](infra/README.md).
+Terraform (AWS EC2) and Ansible are being added in Formative 3. See
+[docs/f3-plan.md](docs/f3-plan.md).
 
 ## License
 MIT. See [LICENSE](LICENSE).

@@ -41,7 +41,7 @@ chore: bump dependencies
 test: cover USSD back-navigation
 ci: add gitleaks secret scanning
 build: add Dockerfile
-infra: add ECS task definition
+infra: add EC2 compute module
 ```
 
 Keep commits small and focused — one logical change per commit.
@@ -62,7 +62,7 @@ Keep commits small and focused — one logical change per commit.
   logic in routes; no storage access outside the repository.
 - **Tests**: pytest, one behaviour per test, named `test_<what_it_does>`.
   Run `pytest -v` before pushing.
-- **Infrastructure**: Terraform in `infra/`, formatted with `terraform fmt`
+- **Infrastructure**: Terraform in `terraform/`, formatted with `terraform fmt`
   and validated with `terraform validate`. Never commit `*.tfvars` or state
   files (they are gitignored — keep it that way).
 - **Security**: never commit secrets, API keys or `.env` files. Dependabot
