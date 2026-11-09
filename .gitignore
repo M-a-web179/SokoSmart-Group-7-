@@ -45,6 +45,9 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+# Real backend config has the account ID in the bucket name
+backend.hcl
+!backend.hcl.example
 # Keep .terraform.lock.hcl committed (pins provider versions)
 
 # ---------- Logs ----------
