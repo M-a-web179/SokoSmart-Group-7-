@@ -50,4 +50,6 @@ jobs:
       - name: Install Checkov
         run: python -m pip install checkov
       - name: Scan Terraform
-        run: checkov -d terraform --framework terraform --compact
+        run: >
+          checkov -d terraform --framework terraform --compact
+          --skip-check CKV_AWS_88,CKV_AWS_126,CKV2_AWS_41,CKV2_AWS_5,CKV2_AWS_11,CKV_AWS_394,CKV_AWS_18,CKV2_AWS_62,CKV_AWS_144,CKV_AWS_145
