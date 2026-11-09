@@ -1,0 +1,4 @@
+# Scripts that run on Linux servers must keep LF endings,
+# even when checked out on Windows with core.autocrlf=true
+*.sh    text eol=lf
+*.tftpl text eol=lf
