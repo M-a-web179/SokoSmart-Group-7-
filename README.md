@@ -148,3 +148,7 @@ GitHub Actions runs these checks on pushes to branches other than `main` and on 
 
 ## License
 MIT. See [LICENSE](LICENSE).
+
+## Server configuration
+
+After Terraform creates the Ubuntu server, follow [the Ansible guide](ansible/README.md) to install Docker, deploy the price service, restrict the firewall and harden SSH. [Contribution notes](team-notes.md) explain the local verification and its limits.

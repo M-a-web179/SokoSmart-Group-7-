@@ -65,3 +65,8 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Local Ansible inventory and runtime settings
+ansible/inventory.ini
+ansible/local.yml
+*.retry
