@@ -10,6 +10,8 @@ RUN pip wheel --no-cache-dir --wheel-dir /wheels -r requirements.txt
 FROM python:3.11.13-slim-bookworm AS runtime
 # Place the Flask entry point and package in a predictable working directory.
 WORKDIR /app
+# Apply available OS security updates and refresh the Python packaging tools shipped with the base image.
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/* && pip install --no-cache-dir --upgrade "setuptools>=78.1.1" "wheel>=0.46.2"
 # Create an unprivileged account for running the web service.
 RUN groupadd --system appuser && useradd --system --gid appuser --create-home appuser
 # Copy the production dependency wheels from the builder stage.
