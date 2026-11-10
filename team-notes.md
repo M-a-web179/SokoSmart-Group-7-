@@ -55,3 +55,7 @@ publishing, dynamic cloud inventory, fail2ban and unattended upgrades are also
 outside this change. M-a-web179's DevSecOps workflow is being handled separately.
 
 Task: https://github.com/M-a-web179/SokoSmart-Group-7-/issues/54
+
+PR: https://github.com/M-a-web179/SokoSmart-Group-7-/pull/55
+
+The issue and PR screenshots are saved alongside the runtime evidence.
