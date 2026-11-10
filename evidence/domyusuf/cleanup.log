@@ -1,0 +1,55 @@
+$ docker exec sokosmart-domyusuf-server docker rm -f sokosmart-price
+sokosmart-price
+$ docker exec sokosmart-domyusuf-server docker image rm sokosmart-price:domyusuf-f3
+Untagged: sokosmart-price:domyusuf-f3
+Deleted: sha256:bc74d48898b33948ea1b3df98219ac68edf5fc1bab72d31bd8eaec1e8ee4f316
+Deleted: sha256:3fcd65b9f88bd61dc5da7ae34d5aecd85a1a27eca1f8a4e0a0b10f9688c7c668
+Deleted: sha256:288183f25937cfdf5c608d8f2e6db41daa10e77ef9daeee972518bf22aa15e9b
+Deleted: sha256:ec3d60201a9c7a463c8ba72d46ba6ac345301ebfe9f9053a1129bb7db2d2e354
+Deleted: sha256:a785e7d37f664bd611f639251a1ae94be2cdcae84b895b97b65bfc7b3ee50cd7
+Deleted: sha256:08bfa5da49b92fa33f6affadab6f0a598811089f7d87c18acef43ee1e5dc5be1
+Deleted: sha256:f360e5c413a80e564a1f95b36f090afd22ffe5cdab2af16e1ce92d0301aae823
+Deleted: sha256:c0a32623ed2d1a1bd16c3013edb1ffa4504dd6e2b74d1133431d9a2a358411f9
+Deleted: sha256:e65b076bfc98e3ca70b43465066163c3b3962c26782a8b27e5f4e9bd2d039d6d
+Deleted: sha256:2b4c074f4c05fd0f6e53f6cd724b83a351f780f3f8b693c173602a3cd4b5f91b
+Deleted: sha256:fb8316c76a9a8f709b1519d8d92520e1590233c3a3114ba1aa399df0d40c83af
+Deleted: sha256:3e5d01a55aea2c9ea64c3cfef2bb870df4b01c7e206103a970d4c3dc6caed96b
+$ docker exec sokosmart-domyusuf-server docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$ docker exec sokosmart-domyusuf-server docker image ls
+IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
+WARNING: This output is designed for human readability. For machine-readable output, please use --format.
+$ docker rm -f sokosmart-domyusuf-server
+sokosmart-domyusuf-server
+$ docker image rm sokosmart-ubuntu-lab:domyusuf sokosmart-price:domyusuf-f3
+Untagged: sokosmart-ubuntu-lab:domyusuf
+Deleted: sha256:e1e9099b5e493b89703d04fb1ca4a10c289554d17b7179eeff7a5d8d3f3403a3
+Untagged: sokosmart-price:domyusuf-f3
+Deleted: sha256:66a29b669d282e6560dbbbbf5e1c26c59fc5d17abbfce440d66bc85149af8acf
+$ docker ps -a --filter name=sokosmart-domyusuf-server --format {{.Names}}
+$ curl --fail http://127.0.0.1:5000/health
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (22) The requested URL returned error: 403
+After cleanup curl returned HTTP 403, not connection refusal; exit code 22.
+The header check below identifies the remaining listener as macOS AirTunes, not SokoSmart.
+
+$ curl -i http://127.0.0.1:5000/health
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/950.7.1
+X-Apple-ProcessingTime: 3
+X-Apple-RequestReceivedTimestamp: 32160517
+
+
+$ docker inspect sokosmart-domyusuf-server
+[]
+error: no such object: sokosmart-domyusuf-server
+
+$ docker image inspect sokosmart-ubuntu-lab:domyusuf sokosmart-price:domyusuf-f3
+[]
+Error response from daemon: No such image: sokosmart-ubuntu-lab:domyusuf
+Error response from daemon: No such image: sokosmart-price:domyusuf-f3

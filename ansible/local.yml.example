@@ -1,0 +1,8 @@
+---
+ssh_allowed_cidr: "203.0.113.10/32"
+app_image: "ghcr.io/YOUR_GITHUB_USERNAME/sokosmart-price:RELEASE_TAG"
+# To load a local build instead of pulling from a registry:
+# app_image: "sokosmart-price:YOUR_COMMIT"
+# app_image_archive: /absolute/path/to/sokosmart-image.tar
+# For a lab server whose SSH port is forwarded from localhost:
+# ansible_port: 2224
