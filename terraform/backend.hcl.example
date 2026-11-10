@@ -1,0 +1,4 @@
+# Copy to backend.hcl and fill in the bucket name printed by ./bootstrap
+bucket = "sokosmart-tfstate-<your-account-id>"
+key    = "f3/dev/terraform.tfstate"
+region = "eu-west-1"

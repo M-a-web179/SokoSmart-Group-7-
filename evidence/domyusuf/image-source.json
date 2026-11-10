@@ -1,0 +1,7 @@
+{
+  "source_repository": "https://github.com/M-a-web179/SokoSmart-Group-7-",
+  "source_commit": "fdad7c63d010443d150c2ee4a9f2332750ee344c",
+  "image": "sokosmart-price:domyusuf-f3",
+  "image_id": "sha256:66a29b669d282e6560dbbbbf5e1c26c59fc5d17abbfce440d66bc85149af8acf",
+  "track": "Local Ubuntu systemd container in Docker; no AWS apply"
+}

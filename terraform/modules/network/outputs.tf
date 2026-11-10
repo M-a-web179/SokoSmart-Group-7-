@@ -1,0 +1,19 @@
+output "vpc_id" {
+  description = "ID of the VPC."
+  value       = aws_vpc.this.id
+}
+
+output "vpc_cidr" {
+  description = "CIDR block of the VPC."
+  value       = aws_vpc.this.cidr_block
+}
+
+output "public_subnet_ids" {
+  description = "IDs of the public subnets, in AZ order."
+  value       = [for az in sort(keys(aws_subnet.public)) : aws_subnet.public[az].id]
+}
+
+output "internet_gateway_id" {
+  description = "ID of the internet gateway."
+  value       = aws_internet_gateway.this.id
+}

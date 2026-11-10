@@ -1,0 +1,4 @@
+sokosmart | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}

@@ -159,3 +159,7 @@ Terraform (AWS EC2) and Ansible are being added in Formative 3. See
 
 ## License
 MIT. See [LICENSE](LICENSE).
+
+## Server configuration
+
+After Terraform creates the Ubuntu server, follow [the Ansible guide](ansible/README.md) to install Docker, deploy the price service, restrict the firewall and harden SSH. [Contribution notes](team-notes.md) explain the local verification and its limits.

@@ -1,0 +1,17 @@
+---
+app_name: sokosmart-price
+# Set app_image to a published tag/digest or a locally built image in local.yml.
+app_image: ""
+# Optional controller-side docker save archive, copied and loaded over SSH.
+app_image_archive: ""
+app_port: 5000
+app_container_port: 5000
+app_bind_address: "0.0.0.0"
+app_health_path: /health
+app_env:
+  FLASK_DEBUG: "0"
+  SEED_FILE: data/seed_prices.json
+app_volumes: []
+ssh_port: 22
+# Supply ssh_allowed_cidr in local.yml before running.
+docker_nested: "{{ ansible_facts.virtualization_type in ['docker', 'container', 'containerd'] }}"
