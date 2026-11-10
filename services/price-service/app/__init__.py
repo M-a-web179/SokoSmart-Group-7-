@@ -1,6 +1,7 @@
 from flask import Flask
 
 from .config import Config
+from .dashboard import dashboard
 from .repository import InMemoryPriceRepository
 from .routes import api
 from .services import PriceService
@@ -19,4 +20,5 @@ def create_app(config_overrides: dict | None = None) -> Flask:
 
     app.register_blueprint(api)
     app.register_blueprint(ussd)
+    app.register_blueprint(dashboard)
     return app

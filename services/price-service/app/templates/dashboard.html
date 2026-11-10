@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SokoSmart - Market Price Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">🌾</span>
+      <div>
+        <h1>SokoSmart</h1>
+        <p>Know the market price before you go to market.</p>
+      </div>
+    </div>
+    <span id="health" class="badge" role="status">checking…</span>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="summary-title">
+      <h2 id="summary-title">Price summary</h2>
+      <p class="hint">Average, min and max prices across reporting markets.</p>
+      <div id="summary-cards" class="grid"></div>
+    </section>
+
+    <section class="card" aria-labelledby="compare-title">
+      <h2 id="compare-title">Compare markets</h2>
+      <div class="row">
+        <label for="crop-select">Crop</label>
+        <select id="crop-select"></select>
+      </div>
+      <table id="compare-table" hidden>
+        <thead>
+          <tr><th>#</th><th>Market</th><th>Price</th><th>Reported on</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p id="compare-empty" class="hint" hidden>No prices for this crop yet.</p>
+    </section>
+
+    <section class="card" aria-labelledby="report-title">
+      <h2 id="report-title">Report a price</h2>
+      <form id="report-form" class="row wrap">
+        <label>Crop <input name="crop" required placeholder="Maize"></label>
+        <label>Market <input name="market" required placeholder="Huye"></label>
+        <label>Price (RWF/kg) <input name="price" type="number" min="1" step="any" required placeholder="410"></label>
+        <button type="submit">Submit</button>
+      </form>
+      <p id="report-result" class="hint" role="status"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>SokoSmart · Group 7 · data refreshes on load · <a href="/api/prices">raw API</a></p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
