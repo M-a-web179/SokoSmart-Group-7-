@@ -117,7 +117,7 @@ How it was run:
 
 Known issue: the `/etc/motd.d/10-terraform` line in the user data had no effect on Ubuntu 24.04, because the file was not created. The error is suppressed and nothing depends on it.
 
-Evidence is in `evidence/terraform-cloud/`, with the operator's public IP redacted.
+Evidence is in evidence/terraform-cloud/, with the operator's public IP redacted. The apply console output was not saved; see the README in that folder.
 
 ## Variables
 
