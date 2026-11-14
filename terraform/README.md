@@ -68,7 +68,6 @@ state stays local in `bootstrap/terraform.tfstate` (gitignored).
 
 ```bash
 cp terraform.tfvars.example terraform.tfvars
-# edit terraform.tfvars: at least ssh_allowed_cidrs = ["<your-ip>/32"]
 ```
 
 **3. Init, check, plan, apply**
@@ -96,6 +95,29 @@ terraform destroy
 
 The state bucket is left alone. To remove it too, run
 `terraform -chdir=bootstrap destroy -var force_destroy=true`.
+
+## Cloud provider status
+
+Applied and verified on AWS (eu-west-1) on 12 November 2026, then destroyed.
+
+| Check | Result |
+|---|---|
+| `terraform apply` | 16 resources created: VPC, 2 public subnets, internet gateway, route table, security group with rules, key pair and a t3.micro Ubuntu 24.04 instance |
+| SSH | Key login as `ubuntu` worked; Python 3.12.3 present and cloud-init finished |
+| Ansible | First run `ok=25 changed=13 failed=0`, second run `ok=22 changed=0 failed=0` |
+| Application | `/health` and `/api/prices` returned HTTP 200 from outside AWS, with all 12 seeded prices |
+| Hardening | UFW allowed SSH only from the admin IP and port 5000 from anywhere; container reported healthy; root and password SSH login disabled |
+| Cleanup | `terraform destroy` removed everything; the instance showed `terminated` and no VPC, key pair or state remained. Only the bootstrap state bucket was kept |
+
+How it was run:
+
+- Terraform ran from Windows PowerShell with a temporary IAM access key, deleted afterwards.
+- Ansible ran from WSL Ubuntu. The image was built locally and shipped with `docker save` through `app_image_archive`, so no registry was used.
+- The inventory was written by hand because WSL had no AWS credentials to read Terraform outputs.
+
+Known issue: the `/etc/motd.d/10-terraform` line in the user data had no effect on Ubuntu 24.04, because the file was not created. The error is suppressed and nothing depends on it.
+
+Evidence is in `evidence/terraform-cloud/`, with the operator's public IP redacted.
 
 ## Variables
 
