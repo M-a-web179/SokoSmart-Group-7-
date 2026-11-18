@@ -1,0 +1,54 @@
+Terraform outputs after apply
+ami_id = "ami-0b27c8d40b81d75ef"
+app_url = "http://54.170.231.105:5000/health"
+instance_id = "i-0a36a42580bc5b077"
+instance_public_dns = "ec2-54-170-231-105.eu-west-1.compute.amazonaws.com"
+instance_public_ip = "54.170.231.105"
+public_subnet_ids = [
+  "subnet-0043b4f4ac31ec6f7",
+  "subnet-0e7e39697bc811158",
+]
+security_group_id = "sg-0bb3228c5fee21e46"
+ssh_command = "ssh -i ~/.ssh/sokosmart_f3 ubuntu@54.170.231.105"
+ssh_user = "ubuntu"
+vpc_id = "vpc-024fb84f5f98948fd"
+
+External check: curl.exe -i http://54.170.231.105:5000/health
+HTTP/1.1 200 OK
+Server: gunicorn
+Date: Thu, 12 Nov 2026 19:54:46 GMT
+Connection: close
+Content-Type: application/json
+Content-Length: 42
+
+{"service":"price-service","status":"ok"}
+
+External check: curl.exe -i http://54.170.231.105:5000/api/prices
+HTTP/1.1 200 OK
+Server: gunicorn
+Date: Thu, 12 Nov 2026 19:54:51 GMT
+Connection: close
+Content-Type: application/json
+Content-Length: 1379
+
+{"count":12,"prices":[{"crop":"Maize","currency":"RWF","id":1,"market":"Kimironko","price":450,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Maize","currency":"RWF","id":2,"market":"Nyabugogo","price":420,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Maize","currency":"RWF","id":3,"market":"Musanze","price":390,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Beans","currency":"RWF","id":4,"market":"Kimironko","price":900,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Beans","currency":"RWF","id":5,"market":"Nyabugogo","price":870,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Beans","currency":"RWF","id":6,"market":"Huye","price":940,"reported_on":"2026-10-19","unit":"kg"},{"crop":"Tomatoes","currency":"RWF","id":7,"market":"Kimironko","price":600,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Tomatoes","currency":"RWF","id":8,"market":"Musanze","price":520,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Rice","currency":"RWF","id":9,"market":"Nyabugogo","price":1100,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Rice","currency":"RWF","id":10,"market":"Huye","price":1150,"reported_on":"2026-10-18","unit":"kg"},{"crop":"Potatoes","currency":"RWF","id":11,"market":"Musanze","price":350,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Potatoes","currency":"RWF","id":12,"market":"Kimironko","price":420,"reported_on":"2026-10-20","unit":"kg"}]}
+
+Server check over SSH: sudo ufw status; sudo docker ps; sudo sshd -T
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       <redacted admin IP>
+5000/tcp                   ALLOW       Anywhere
+5000/tcp (v6)              ALLOW       Anywhere (v6)
+
+sokosmart-price Up 6 minutes (healthy)
+permitrootlogin no
+passwordauthentication no
+
+After terraform destroy (see terraform-destroy-and-checks.png)
+Destroy complete! Resources: 16 destroyed.
+aws ec2 describe-instances ... : terminated
+aws ec2 describe-vpcs ... : (no output)
+aws ec2 describe-key-pairs ... : (no output)
+terraform state list : (no output)
