@@ -39,3 +39,9 @@ module "compute" {
   ssh_public_key     = file(pathexpand(var.ssh_public_key_path))
   root_volume_size   = var.root_volume_size
 }
+
+module "ecr" {
+  source = "./modules/ecr"
+
+  name = "${var.project}-price"
+}

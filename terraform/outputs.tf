@@ -47,3 +47,8 @@ output "app_url" {
   description = "Where the price-service will answer once Ansible has deployed it."
   value       = "http://${module.compute.public_ip}:${var.app_port}/health"
 }
+
+output "ecr_repository_url" {
+  description = "Private registry URL for docker push and pull."
+  value       = module.ecr.repository_url
+}
