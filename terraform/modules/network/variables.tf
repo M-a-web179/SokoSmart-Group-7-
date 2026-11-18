@@ -9,7 +9,7 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnet_count" {
-  description = "Number of public subnets (one per AZ)."
+  description = "Number of public subnets (one per AZ). The same number of private subnets is created in the same AZs."
   type        = number
   default     = 2
 }
