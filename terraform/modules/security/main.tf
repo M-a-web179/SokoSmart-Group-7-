@@ -115,6 +115,7 @@ resource "aws_vpc_security_group_egress_rule" "bastion_internet" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "app_from_bastion" {
+  #checkov:skip=CKV_AWS_24:Source is the bastion security group, not a CIDR range
   for_each = local.bastion_to_app_ports
 
   security_group_id            = aws_security_group.app.id

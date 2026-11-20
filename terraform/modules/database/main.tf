@@ -39,6 +39,7 @@ resource "aws_db_instance" "this" {
   iam_database_authentication_enabled = true
   performance_insights_enabled        = false
   copy_tags_to_snapshot               = true
+  enabled_cloudwatch_logs_exports     = ["postgresql", "upgrade"]
 
   tags = {
     Name = "${var.name}-db"
