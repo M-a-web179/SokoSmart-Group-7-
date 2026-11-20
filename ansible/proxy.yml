@@ -7,4 +7,3 @@
     proxy_upstream_port: "{{ app_port }}"
   roles:
     - role: proxy
-    

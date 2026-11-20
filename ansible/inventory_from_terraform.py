@@ -33,9 +33,9 @@ jump = (f'-o ProxyCommand="ssh -i {args.key} -W %h:%p '
         f'-o StrictHostKeyChecking=accept-new -o IdentitiesOnly=yes {user}@{bastion}"')
 text = (
     '[bastion]\n'
-    f"bastion ansible_host={bastion} ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'\n"
+    f"bastion_host ansible_host={bastion} ansible_ssh_common_args='-o StrictHostKeyChecking=accept-new'\n"
     '\n[app]\n'
-    f"app ansible_host={app} ansible_ssh_common_args='{jump} -o StrictHostKeyChecking=accept-new'\n"
+    f"app_host ansible_host={app} ansible_ssh_common_args='{jump} -o StrictHostKeyChecking=accept-new'\n"
     '\n[all:vars]\n'
     f'ansible_user={user}\n'
     f'ansible_ssh_private_key_file={args.key}\n'
