@@ -1,0 +1,10 @@
+- name: Configure the bastion reverse proxy
+  hosts: bastion
+  become: true
+  gather_facts: true
+  vars:
+    proxy_upstream_host: "{{ hostvars[groups['app'][0]]['ansible_host'] }}"
+    proxy_upstream_port: "{{ app_port }}"
+  roles:
+    - role: proxy
+    

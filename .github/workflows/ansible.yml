@@ -19,4 +19,4 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install ansible-lint==26.11.0
       - run: ansible-galaxy collection install -r ansible/requirements.yml
-      - run: ansible-lint ansible/site.yml ansible/playbook.yml ansible/roles
+      - run: ansible-lint ansible/site.yml ansible/playbook.yml ansible/proxy.yml ansible/roles
