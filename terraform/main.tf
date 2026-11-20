@@ -35,22 +35,28 @@ module "compute" {
   name          = local.name
   instance_type = var.instance_type
 
-  # Bastion in a public subnet, app VM in a private one
   bastion_subnet_id = module.network.public_subnet_ids[0]
   app_subnet_id     = module.network.private_subnet_ids[0]
 
-  # Placeholder: both use the existing SG until the bastion/app/db
-  # security group chain lands (issue #64). Then swap to
-  # module.security.bastion_sg_id and module.security.app_sg_id.
-  bastion_security_group_ids = [module.security.security_group_id]
-  app_security_group_ids     = [module.security.security_group_id]
+  bastion_security_group_ids = [module.security.bastion_sg_id]
+  app_security_group_ids     = [module.security.app_sg_id]
 
   ssh_public_key   = file(pathexpand(var.ssh_public_key_path))
   root_volume_size = var.root_volume_size
+
+  depends_on = [module.network]
 }
 
 module "ecr" {
   source = "./modules/ecr"
 
   name = "${var.project}-price"
+}
+
+module "database" {
+  source = "./modules/database"
+
+  name                 = local.name
+  private_subnet_ids   = module.network.private_subnet_ids
+  db_security_group_id = module.security.db_sg_id
 }
