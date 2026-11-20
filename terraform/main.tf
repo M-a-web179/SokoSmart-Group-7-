@@ -1,7 +1,6 @@
 locals {
   name = "${var.project}-${var.environment}"
 
-  # Tagging standard: every resource carries these (via provider default_tags)
   common_tags = merge(var.extra_tags, {
     Project     = var.project
     Environment = var.environment
@@ -29,24 +28,6 @@ module "security" {
   app_port          = var.app_port
 }
 
-module "compute" {
-  source = "./modules/compute"
-
-  name          = local.name
-  instance_type = var.instance_type
-
-  bastion_subnet_id = module.network.public_subnet_ids[0]
-  app_subnet_id     = module.network.private_subnet_ids[0]
-
-  bastion_security_group_ids = [module.security.bastion_sg_id]
-  app_security_group_ids     = [module.security.app_sg_id]
-
-  ssh_public_key   = file(pathexpand(var.ssh_public_key_path))
-  root_volume_size = var.root_volume_size
-
-  depends_on = [module.network]
-}
-
 module "ecr" {
   source = "./modules/ecr"
 
@@ -59,4 +40,32 @@ module "database" {
   name                 = local.name
   private_subnet_ids   = module.network.private_subnet_ids
   db_security_group_id = module.security.db_sg_id
+}
+
+module "iam" {
+  source = "./modules/iam"
+
+  name                = local.name
+  ecr_repository_name = "${var.project}-price"
+  db_secret_arn       = module.database.secret_arn
+}
+
+module "compute" {
+  source = "./modules/compute"
+
+  name          = local.name
+  instance_type = var.instance_type
+
+  bastion_subnet_id = module.network.public_subnet_ids[0]
+  app_subnet_id     = module.network.private_subnet_ids[0]
+
+  bastion_security_group_ids = [module.security.bastion_sg_id]
+  app_security_group_ids     = [module.security.app_sg_id]
+
+  iam_instance_profile_name = module.iam.instance_profile_name
+
+  ssh_public_key   = file(pathexpand(var.ssh_public_key_path))
+  root_volume_size = var.root_volume_size
+
+  depends_on = [module.network]
 }

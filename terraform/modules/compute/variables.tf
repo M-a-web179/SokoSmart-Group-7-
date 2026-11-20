@@ -50,3 +50,9 @@ variable "instance_tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "iam_instance_profile_name" {
+  description = "Instance profile attached to the app VM. Leave null for no role."
+  type        = string
+  default     = null
+}
