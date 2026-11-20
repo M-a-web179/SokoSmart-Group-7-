@@ -29,12 +29,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build image
         run: docker build -t sokosmart-price-service:scan .
+      # The default DB mirror (mirror.gcr.io) returned BLOB_UNKNOWN on
+      # 2026-11-18, so pull the vulnerability DB from GHCR instead.
       - name: Scan image for HIGH and CRITICAL vulnerabilities
         run: >
           docker run --rm
           -v /var/run/docker.sock:/var/run/docker.sock
           -v ${{ github.workspace }}/.trivycache:/root/.cache
           aquasec/trivy:0.57.1 image
+          --db-repository ghcr.io/aquasecurity/trivy-db:2
           --severity HIGH,CRITICAL
           --ignore-unfixed
           --exit-code 1

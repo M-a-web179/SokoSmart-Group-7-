@@ -1,16 +1,21 @@
-output "instance_public_ip" {
-  description = "Public IP of the app server. Use this in the Ansible inventory."
-  value       = module.compute.public_ip
+output "bastion_public_ip" {
+  description = "Public IP of the bastion host. The only SSH entry point."
+  value       = module.compute.bastion_public_ip
 }
 
-output "instance_public_dns" {
-  description = "Public DNS name of the app server."
-  value       = module.compute.public_dns
+output "bastion_instance_id" {
+  description = "EC2 instance ID of the bastion host."
+  value       = module.compute.bastion_instance_id
 }
 
-output "instance_id" {
-  description = "EC2 instance ID."
-  value       = module.compute.instance_id
+output "app_private_ip" {
+  description = "Private IP of the app VM. Use it in the Ansible inventory with ProxyJump through the bastion."
+  value       = module.compute.app_private_ip
+}
+
+output "app_instance_id" {
+  description = "EC2 instance ID of the app VM."
+  value       = module.compute.app_instance_id
 }
 
 output "vpc_id" {
@@ -39,11 +44,16 @@ output "ssh_user" {
 }
 
 output "ssh_command" {
-  description = "Ready-to-paste SSH command (swap in your private key path)."
-  value       = "ssh -i ~/.ssh/sokosmart_f3 ubuntu@${module.compute.public_ip}"
+  description = "Ready-to-paste SSH command to the private app VM through the bastion (swap in your private key path)."
+  value       = "ssh -i ~/.ssh/sokosmart_f3 -J ubuntu@${module.compute.bastion_public_ip} ubuntu@${module.compute.app_private_ip}"
 }
 
-output "app_url" {
-  description = "Where the price-service will answer once Ansible has deployed it."
-  value       = "http://${module.compute.public_ip}:${var.app_port}/health"
+output "private_subnet_ids" {
+  description = "IDs of the private subnets (two AZs). Used for the app VM and the RDS subnet group."
+  value       = module.network.private_subnet_ids
+}
+
+output "nat_public_ip" {
+  description = "Outbound IP of the private subnets (NAT gateway)."
+  value       = module.network.nat_public_ip
 }

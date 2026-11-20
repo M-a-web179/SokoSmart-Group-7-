@@ -41,7 +41,7 @@ The first scan had 38 passed and 10 failed checks. None is a critical misconfigu
 
 | Check | Resource | Justification |
 |---|---|---|
-| CKV_AWS_88 | EC2 instance | The instance has a public IP so users and Ansible can reach it directly. A bastion host or NAT gateway is out of scope and adds cost. Ingress is limited by security group rules. |
+| CKV_AWS_88 | Bastion host | Only the bastion has a public IP, because it is the single SSH entry point into the VPC. The app VM sits in a private subnet with no public IP and reaches the internet through the NAT gateway. SSH to the bastion is limited to admin IPs by security group rules. |
 | CKV_AWS_126 | EC2 instance | Detailed monitoring is a paid feature and is not needed for a single `t3.micro` student environment. |
 | CKV2_AWS_41 | EC2 instance | The application makes no AWS API calls, so an instance role would grant no needed permissions. |
 | CKV2_AWS_5 | Security group | The security group is attached to the instance through the compute module. Checkov does not follow the reference across module boundaries, so this is a false positive. |

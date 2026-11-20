@@ -29,13 +29,58 @@ resource "aws_key_pair" "this" {
   }
 }
 
+# Bastion (jump box): the only machine with SSH open from outside.
+# Ansible and admins reach the private app VM through it with ProxyJump.
+resource "aws_instance" "bastion" {
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = var.bastion_instance_type
+  subnet_id                   = var.bastion_subnet_id
+  vpc_security_group_ids      = var.bastion_security_group_ids
+  key_name                    = aws_key_pair.this.key_name
+  associate_public_ip_address = true
+  ebs_optimized               = true
+  monitoring                  = false
+
+  user_data = templatefile("${path.module}/user_data.sh.tftpl", {
+    hostname = "${var.name}-bastion"
+  })
+
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
+  }
+
+  root_block_device {
+    volume_type           = "gp3"
+    volume_size           = 8
+    encrypted             = true
+    delete_on_termination = true
+
+    tags = {
+      Name = "${var.name}-bastion-root"
+    }
+  }
+
+  tags = merge(var.instance_tags, {
+    Name = "${var.name}-bastion"
+    Role = "bastion"
+  })
+
+  lifecycle {
+    ignore_changes = [ami]
+  }
+}
+
+# App VM: private subnet, no public IP. Outbound traffic (apt, Docker,
+# ECR) goes through the NAT gateway in the network module.
 resource "aws_instance" "app" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
-  subnet_id                   = var.subnet_id
-  vpc_security_group_ids      = var.security_group_ids
+  subnet_id                   = var.app_subnet_id
+  vpc_security_group_ids      = var.app_security_group_ids
   key_name                    = aws_key_pair.this.key_name
-  associate_public_ip_address = true
+  associate_public_ip_address = false # private subnet, reached through the bastion
   ebs_optimized               = true
   monitoring                  = false # detailed monitoring is not free tier
 
