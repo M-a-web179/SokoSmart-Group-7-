@@ -65,13 +65,13 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnet_count" {
-  description = "How many public subnets to create, each in its own availability zone."
+  description = "How many availability zones to use. One public and one private subnet is created in each."
   type        = number
   default     = 2
 
   validation {
-    condition     = var.public_subnet_count >= 1 && var.public_subnet_count <= 3
-    error_message = "public_subnet_count must be between 1 and 3."
+    condition     = var.public_subnet_count >= 2 && var.public_subnet_count <= 3
+    error_message = "public_subnet_count must be 2 or 3 (RDS needs subnets in at least two AZs)."
   }
 }
 
