@@ -1,0 +1,133 @@
+﻿
+=== GET /health
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:26:23 GMT
+Content-Type: application/json
+Content-Length: 42
+Connection: keep-alive
+X-Request-ID: d4c7689056c34cbea0fbb92abbebd20a
+
+{"service":"price-service","status":"ok"}
+
+=== GET /ready
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:26:29 GMT
+Content-Type: application/json
+Content-Length: 46
+Connection: keep-alive
+X-Request-ID: b3654e57fa894c8abeed97401076553d
+
+{"checks":{"database":"ok"},"status":"ready"}
+
+=== GET /api/prices
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:26:36 GMT
+Content-Type: application/json
+Content-Length: 1379
+Connection: keep-alive
+X-Request-ID: 6da62d4280974a79a1c36c18f5c8fe80
+
+{"count":12,"prices":[{"crop":"Maize","currency":"RWF","id":1,"market":"Kimironko","price":450,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Maize","currency":"RWF","id":2,"market":"Nyabugogo","price":420,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Maize","currency":"RWF","id":3,"market":"Musanze","price":390,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Beans","currency":"RWF","id":4,"market":"Kimironko","price":900,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Beans","currency":"RWF","id":5,"market":"Nyabugogo","price":870,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Beans","currency":"RWF","id":6,"market":"Huye","price":940,"reported_on":"2026-10-19","unit":"kg"},{"crop":"Tomatoes","currency":"RWF","id":7,"market":"Kimironko","price":600,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Tomatoes","currency":"RWF","id":8,"market":"Musanze","price":520,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Rice","currency":"RWF","id":9,"market":"Nyabugogo","price":1100,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Rice","currency":"RWF","id":10,"market":"Huye","price":1150,"reported_on":"2026-10-18","unit":"kg"},{"crop":"Potatoes","currency":"RWF","id":11,"market":"Musanze","price":350,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Potatoes","currency":"RWF","id":12,"market":"Kimironko","price":420,"reported_on":"2026-10-20","unit":"kg"}]}
+
+=== GET /api/prices?crop=Maize
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:26:44 GMT
+Content-Type: application/json
+Content-Length: 360
+Connection: keep-alive
+X-Request-ID: e32b52f3893142d7bab42dcb40ccb23b
+
+{"count":3,"prices":[{"crop":"Maize","currency":"RWF","id":1,"market":"Kimironko","price":450,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Maize","currency":"RWF","id":2,"market":"Nyabugogo","price":420,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Maize","currency":"RWF","id":3,"market":"Musanze","price":390,"reported_on":"2026-10-21","unit":"kg"}]}
+
+=== GET /api/prices?market=Kimironko
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:26:58 GMT
+Content-Type: application/json
+Content-Length: 482
+Connection: keep-alive
+X-Request-ID: 3809f05fc1574050b22cec6497abb739
+
+{"count":4,"prices":[{"crop":"Maize","currency":"RWF","id":1,"market":"Kimironko","price":450,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Beans","currency":"RWF","id":4,"market":"Kimironko","price":900,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Tomatoes","currency":"RWF","id":7,"market":"Kimironko","price":600,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Potatoes","currency":"RWF","id":12,"market":"Kimironko","price":420,"reported_on":"2026-10-20","unit":"kg"}]}
+
+=== GET /api/prices?crop=Beans&market=Huye
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:27:07 GMT
+Content-Type: application/json
+Content-Length: 131
+Connection: keep-alive
+X-Request-ID: f4e3a57381fc4e14bbf4ee984a44e700
+
+{"count":1,"prices":[{"crop":"Beans","currency":"RWF","id":6,"market":"Huye","price":940,"reported_on":"2026-10-19","unit":"kg"}]}
+
+=== GET /api/prices/summary
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:27:14 GMT
+Content-Type: application/json
+Content-Length: 947
+Connection: keep-alive
+X-Request-ID: 6ec23836e9b94557adf2269b25402a99
+
+{"summary":[{"average_price":903.33,"cheapest_market":"Nyabugogo","crop":"Beans","currency":"RWF","markets_reporting":3,"max_price":940,"min_price":870,"most_expensive_market":"Huye","unit":"kg"},{"average_price":420.0,"cheapest_market":"Musanze","crop":"Maize","currency":"RWF","markets_reporting":3,"max_price":450,"min_price":390,"most_expensive_market":"Kimironko","unit":"kg"},{"average_price":385.0,"cheapest_market":"Musanze","crop":"Potatoes","currency":"RWF","markets_reporting":2,"max_price":420,"min_price":350,"most_expensive_market":"Kimironko","unit":"kg"},{"average_price":1125.0,"cheapest_market":"Nyabugogo","crop":"Rice","currency":"RWF","markets_reporting":2,"max_price":1150,"min_price":1100,"most_expensive_market":"Huye","unit":"kg"},{"average_price":560.0,"cheapest_market":"Musanze","crop":"Tomatoes","currency":"RWF","markets_reporting":2,"max_price":600,"min_price":520,"most_expensive_market":"Kimironko","unit":"kg"}]}
+
+=== GET /api/crops/Maize/compare
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:27:20 GMT
+Content-Type: application/json
+Content-Length: 328
+Connection: keep-alive
+X-Request-ID: 9eb6836ee023475aaefe56591c12959e
+
+{"cheapest_market":"Musanze","crop":"Maize","markets":[{"currency":"RWF","market":"Musanze","price":390,"reported_on":"2026-10-21","unit":"kg"},{"currency":"RWF","market":"Nyabugogo","price":420,"reported_on":"2026-10-20","unit":"kg"},{"currency":"RWF","market":"Kimironko","price":450,"reported_on":"2026-10-20","unit":"kg"}]}
+
+=== GET /api/crops/Cassava/compare (expect 404)
+HTTP/1.1 404 NOT FOUND
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:27:28 GMT
+Content-Type: application/json
+Content-Length: 47
+Connection: keep-alive
+X-Request-ID: a83fba78800b4d46b57e0f8332caf576
+
+{"error":"No prices found for crop 'Cassava'"}
+
+=== POST /api/prices (valid)
+HTTP/1.1 201 CREATED
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:27:52 GMT
+Content-Type: application/json
+Content-Length: 111
+Connection: keep-alive
+X-Request-ID: e8dd7d3784a94713891ab42847765037
+
+{"crop":"Maize","currency":"RWF","id":13,"market":"Huye","price":410.0,"reported_on":"2026-11-21","unit":"kg"}
+
+=== POST /api/prices (invalid body, expect 400)
+HTTP/1.1 400 BAD REQUEST
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:28:01 GMT
+Content-Type: application/json
+Content-Length: 47
+Connection: keep-alive
+X-Request-ID: f3704a189bf043079e947d77606bad26
+
+{"error":"Request body must be a JSON object"}
+
+=== GET /api/prices?crop=Maize after POST
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Sat, 21 Nov 2026 11:28:07 GMT
+Content-Type: application/json
+Content-Length: 471
+Connection: keep-alive
+X-Request-ID: 0bedd73409714db48e1bd75491276697
+
+{"count":4,"prices":[{"crop":"Maize","currency":"RWF","id":1,"market":"Kimironko","price":450,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Maize","currency":"RWF","id":2,"market":"Nyabugogo","price":420,"reported_on":"2026-10-20","unit":"kg"},{"crop":"Maize","currency":"RWF","id":3,"market":"Musanze","price":390,"reported_on":"2026-10-21","unit":"kg"},{"crop":"Maize","currency":"RWF","id":13,"market":"Huye","price":410.0,"reported_on":"2026-11-21","unit":"kg"}]}
+

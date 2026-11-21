@@ -70,4 +70,6 @@ desktop.ini
 # Local Ansible inventory and runtime settings
 ansible/inventory.ini
 ansible/local.yml
+ansible/terraform.generated.yml
+terraform/outputs.json
 *.retry
