@@ -28,13 +28,18 @@ output "public_subnet_ids" {
   value       = module.network.public_subnet_ids
 }
 
-output "security_group_id" {
-  description = "ID of the app server security group."
-  value       = module.security.security_group_id
+output "private_subnet_ids" {
+  description = "IDs of the private subnets (two AZs). Used for the app VM and the RDS subnet group."
+  value       = module.network.private_subnet_ids
+}
+
+output "nat_public_ip" {
+  description = "Outbound IP of the private subnets (NAT gateway)."
+  value       = module.network.nat_public_ip
 }
 
 output "ami_id" {
-  description = "Ubuntu AMI used for the instance."
+  description = "Ubuntu AMI used for the instances."
   value       = module.compute.ami_id
 }
 
@@ -44,16 +49,31 @@ output "ssh_user" {
 }
 
 output "ssh_command" {
-  description = "Ready-to-paste SSH command to the private app VM through the bastion (swap in your private key path)."
+  description = "Ready-to-paste SSH command to the private app VM through the bastion."
   value       = "ssh -i ~/.ssh/sokosmart_f3 -J ubuntu@${module.compute.bastion_public_ip} ubuntu@${module.compute.app_private_ip}"
 }
 
-output "private_subnet_ids" {
-  description = "IDs of the private subnets (two AZs). Used for the app VM and the RDS subnet group."
-  value       = module.network.private_subnet_ids
+output "ecr_repository_url" {
+  description = "Private registry URL for docker push and pull."
+  value       = module.ecr.repository_url
 }
 
-output "nat_public_ip" {
-  description = "Outbound IP of the private subnets (NAT gateway)."
-  value       = module.network.nat_public_ip
+output "db_endpoint" {
+  description = "RDS host name. Reachable only from the app security group."
+  value       = module.database.endpoint
+}
+
+output "db_port" {
+  description = "RDS port."
+  value       = module.database.port
+}
+
+output "db_name" {
+  description = "Database name."
+  value       = module.database.db_name
+}
+
+output "db_secret_arn" {
+  description = "ARN of the Secrets Manager secret holding the database credentials."
+  value       = module.database.secret_arn
 }
