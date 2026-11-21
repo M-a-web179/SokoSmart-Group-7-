@@ -1,3 +1,4 @@
+---
 - name: Gather the bastion address used for the app firewall rule
   hosts: bastion
   gather_facts: true

@@ -1,0 +1,168 @@
+
+PLAY [Gather the bastion address used for the app firewall rule] ***************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bastion_host]
+
+TASK [Confirm the bastion private address is known] ****************************
+ok: [bastion_host] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+PLAY [Configure and deploy the team application] *******************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [app_host]
+
+TASK [Verify supported host and safe deployment settings] **********************
+ok: [app_host] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [docker : Install Docker and deployment dependencies] *********************
+ok: [app_host]
+
+TASK [docker : Create Docker configuration directory] **************************
+ok: [app_host]
+
+TASK [docker : Configure storage for Docker inside the lab server] *************
+skipping: [app_host]
+
+TASK [docker : Enable and start Docker] ****************************************
+ok: [app_host]
+
+TASK [docker : Apply Docker configuration before deployment] *******************
+
+TASK [ssh_hardening : Verify the connecting user has an authorized public key] ***
+ok: [app_host]
+
+TASK [ssh_hardening : Require existing key access before hardening SSH] ********
+ok: [app_host] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [ssh_hardening : Install validated SSH configuration] *********************
+ok: [app_host]
+
+TASK [ssh_hardening : Apply validated SSH hardening] ***************************
+
+TASK [firewall : Install firewall utilities] ***********************************
+ok: [app_host]
+
+TASK [firewall : Allow SSH from the operator CIDR before enabling the firewall] ***
+ok: [app_host]
+
+TASK [firewall : Allow the application port] ***********************************
+ok: [app_host]
+
+TASK [firewall : Deny other incoming host traffic] *****************************
+ok: [app_host]
+
+TASK [firewall : Allow outgoing host traffic] **********************************
+ok: [app_host]
+
+TASK [firewall : Enable the host firewall] *************************************
+ok: [app_host]
+
+TASK [firewall : Install Docker forwarding firewall policy] ********************
+ok: [app_host]
+
+TASK [firewall : Install persistent Docker firewall service] *******************
+ok: [app_host]
+
+TASK [firewall : Enable persistent Docker forwarding policy] *******************
+ok: [app_host]
+
+TASK [firewall : Apply firewall policy before starting the app] ****************
+
+TASK [app : Check that the database secret is provided] ************************
+ok: [app_host] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [app : Check that the image uses the configured ECR registry] *************
+ok: [app_host] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [app : Install the AWS SDK for Python] ************************************
+ok: [app_host]
+
+TASK [app : Create the application directory] **********************************
+ok: [app_host]
+
+TASK [app : Install the ECR credential helper] *********************************
+ok: [app_host]
+
+TASK [app : Create the deployment Docker configuration directory] **************
+ok: [app_host]
+
+TASK [app : Configure IAM role authentication for this ECR registry] ***********
+ok: [app_host]
+
+TASK [app : Install the database connection helper] ****************************
+ok: [app_host]
+
+TASK [app : Copy the optional image archive to the server] *********************
+skipping: [app_host]
+
+TASK [app : Inspect the configured local image] ********************************
+skipping: [app_host]
+
+TASK [app : Load the supplied application image] *******************************
+skipping: [app_host]
+
+TASK [app : Read the database connection string from Secrets Manager] **********
+ok: [app_host]
+
+TASK [app : Write the environment file] ****************************************
+ok: [app_host]
+
+TASK [app : Write the Compose file] ********************************************
+ok: [app_host]
+
+TASK [app : Start the application with Docker Compose] *************************
+ok: [app_host]
+
+TASK [app : Wait for readiness with a working database connection] *************
+ok: [app_host]
+
+TASK [app : Report application readiness] **************************************
+ok: [app_host] => {
+    "msg": "HTTP 200; database connection is ready"
+}
+
+PLAY [Configure the bastion reverse proxy] *************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bastion_host]
+
+TASK [proxy : Install nginx] ***************************************************
+ok: [bastion_host]
+
+TASK [proxy : Remove the default nginx site] ***********************************
+ok: [bastion_host]
+
+TASK [proxy : Install the reverse proxy configuration] *************************
+ok: [bastion_host]
+
+TASK [proxy : Check the nginx configuration] ***********************************
+ok: [bastion_host]
+
+TASK [proxy : Enable and start nginx] ******************************************
+ok: [bastion_host]
+
+TASK [proxy : Apply the proxy configuration] ***********************************
+
+TASK [proxy : Verify readiness through the bastion reverse proxy] **************
+ok: [bastion_host]
+
+PLAY RECAP *********************************************************************
+app_host                   : ok=31   changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+bastion_host               : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
