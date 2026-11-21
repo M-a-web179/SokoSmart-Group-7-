@@ -1,19 +1,20 @@
 # SokoSmart infrastructure (Terraform)
 
-Terraform for Formative 3, Part 1. It builds one Ubuntu server on AWS for the
-price-service, which Ansible (Part 2) then configures.
+Terraform for the Summative project. It builds a private, production-style stack on AWS in eu-west-1: a VPC with public and private subnets, a bastion host, a private app VM, a PostgreSQL RDS instance, a private ECR repository and the security groups and IAM that connect them. Ansible then deploys the price-service onto the app VM.
 
 ```
 Internet
    │
    ▼
-Internet gateway ── route table (0.0.0.0/0)
+Internet gateway
    │
 VPC 10.20.0.0/16
- ├─ public subnet eu-west-1a 10.20.0.0/24 ── EC2 t3.micro (Ubuntu 24.04)
- └─ public subnet eu-west-1b 10.20.1.0/24       SG: 22 from your IP only
-                                                    80 and 5000 from anywhere
-                                                    all outbound
+ ├─ public subnets (2 AZs)  ── bastion host (SSH from admin IP, HTTP 80 from the internet)
+ │                             NAT gateway (outbound only)
+ └─ private subnets (2 AZs) ── app VM (no public IP, reached through the bastion)
+                               RDS PostgreSQL (reachable only from the app security group)
+
+ECR (private, immutable tags)    Secrets Manager (database credentials)
 ```
 
 ## Layout
@@ -21,33 +22,34 @@ VPC 10.20.0.0/16
 ```
 terraform/
 ├── versions.tf               Terraform and provider versions
-├── providers.tf              AWS provider + default tags
+├── providers.tf              AWS provider and default tags
 ├── backend.tf                S3 remote state (partial config)
 ├── backend.hcl.example       template for backend.hcl
 ├── variables.tf              inputs, with validation
-├── main.tf                   wires the three modules together
-├── outputs.tf                IP, IDs, ssh command etc.
+├── main.tf                   wires the modules together
+├── outputs.tf                IPs, IDs, endpoints, secret ARN
 ├── terraform.tfvars.example  template for terraform.tfvars
 ├── bootstrap/                one-off stack that creates the state bucket
 └── modules/
-    ├── network/              VPC, subnets (for_each), IGW, route table
-    ├── security/             security group + rules (for_each)
-    └── compute/              Ubuntu AMI lookup, key pair, EC2 instance, user data
+    ├── network/              VPC, public and private subnets, internet gateway, NAT gateway, routes
+    ├── security/             security groups and rules
+    ├── ecr/                  private ECR repository
+    ├── database/             RDS PostgreSQL and the Secrets Manager secret
+    ├── iam/                  instance profile for the app VM
+    └── compute/              Ubuntu AMI lookup, key pair, bastion and app VM
 ```
 
 ## Prerequisites
 
 - Terraform 1.10 or newer (`terraform version`). 1.10 is needed for S3 state locking.
-- AWS CLI v2, logged in with an IAM user that can manage EC2, VPC and S3
-  (`aws sts get-caller-identity` should print your account).
+- AWS CLI v2 with an IAM user that can manage EC2, VPC, RDS, ECR, IAM, Secrets Manager and S3 (`aws sts get-caller-identity` should print your account).
 - An SSH key pair. The default path is `~/.ssh/sokosmart_f3`:
   ```bash
   ssh-keygen -t ed25519 -f ~/.ssh/sokosmart_f3 -C sokosmart-f3
   ```
-- Your public IP, for the SSH rule: `curl https://checkip.amazonaws.com`
+- Your public IP for the SSH rule: `curl https://checkip.amazonaws.com`
 
-No AWS keys go in this folder. The provider reads them from your AWS CLI
-profile or the usual `AWS_*` environment variables.
+No AWS keys go in this folder. The provider reads them from your AWS CLI profile or the usual `AWS_*` environment variables.
 
 ## Usage
 
@@ -61,14 +63,15 @@ terraform -chdir=bootstrap apply
 terraform -chdir=bootstrap output -raw backend_hcl > backend.hcl
 ```
 
-The bucket is versioned, encrypted and blocks all public access. Its own
-state stays local in `bootstrap/terraform.tfstate` (gitignored).
+The bucket is versioned, encrypted and blocks all public access. Its own state stays local in `bootstrap/terraform.tfstate` (gitignored).
 
 **2. Set your variables**
 
 ```bash
 cp terraform.tfvars.example terraform.tfvars
 ```
+
+Set `ssh_allowed_cidrs` to your public IP as a `/32`.
 
 **3. Init, check, plan, apply**
 
@@ -80,12 +83,14 @@ terraform plan -out=tfplan
 terraform apply tfplan
 ```
 
-The plan creates 16 resources. Afterwards:
+The apply creates 45 resources. Afterwards:
 
 ```bash
 terraform output
-ssh -i ~/.ssh/sokosmart_f3 ubuntu@$(terraform output -raw instance_public_ip)
+terraform output -json > outputs.json
 ```
+
+`outputs.json` feeds `ansible/inventory_from_terraform.py`. Connect to the private app VM through the bastion with the `ssh_command` output.
 
 **4. Destroy when done**
 
@@ -93,105 +98,78 @@ ssh -i ~/.ssh/sokosmart_f3 ubuntu@$(terraform output -raw instance_public_ip)
 terraform destroy
 ```
 
-The state bucket is left alone. To remove it too, run
-`terraform -chdir=bootstrap destroy -var force_destroy=true`.
-
-## Cloud provider status
-
-Applied and verified on AWS (eu-west-1) on 12 November 2026, then destroyed.
-
-| Check | Result |
-|---|---|
-| `terraform apply` | 16 resources created: VPC, 2 public subnets, internet gateway, route table, security group with rules, key pair and a t3.micro Ubuntu 24.04 instance |
-| SSH | Key login as `ubuntu` worked; Python 3.12.3 present and cloud-init finished |
-| Ansible | First run `ok=25 changed=13 failed=0`, second run `ok=22 changed=0 failed=0` |
-| Application | `/health` and `/api/prices` returned HTTP 200 from outside AWS, with all 12 seeded prices |
-| Hardening | UFW allowed SSH only from the admin IP and port 5000 from anywhere; container reported healthy; root and password SSH login disabled |
-| Cleanup | `terraform destroy` removed everything; the instance showed `terminated` and no VPC, key pair or state remained. Only the bootstrap state bucket was kept |
-
-How it was run:
-
-- Terraform ran from Windows PowerShell with a temporary IAM access key, deleted afterwards.
-- Ansible ran from WSL Ubuntu. The image was built locally and shipped with `docker save` through `app_image_archive`, so no registry was used.
-- The inventory was written by hand because WSL had no AWS credentials to read Terraform outputs.
-
-Known issue: the `/etc/motd.d/10-terraform` line in the user data had no effect on Ubuntu 24.04, because the file was not created. The error is suppressed and nothing depends on it.
-
-Evidence is in evidence/terraform-cloud/, with the operator's public IP redacted. The apply console output was not saved; see the README in that folder.
+The state bucket is left alone. To remove it too, run `terraform -chdir=bootstrap destroy -var force_destroy=true`. The NAT gateway and RDS instance cost money while they exist, so destroy the stack as soon as it is no longer needed.
 
 ## Variables
 
 | Name | Type | Default | Notes |
 |---|---|---|---|
 | `aws_region` | string | `eu-west-1` | must look like a region code |
-| `aws_profile` | string | `null` | AWS CLI profile; null uses env vars or default |
+| `aws_profile` | string | `null` | AWS CLI profile; null uses env vars or the default profile |
 | `project` | string | `sokosmart` | name prefix, lowercase, 3-21 chars |
 | `environment` | string | `dev` | one of `dev`, `staging`, `prod` |
 | `owner` | string | `group-7` | goes in the `Owner` tag |
 | `extra_tags` | map(string) | `{}` | added to every resource |
 | `vpc_cidr` | string | `10.20.0.0/16` | must be a valid CIDR |
-| `public_subnet_count` | number | `2` | 1 to 3, one per AZ |
+| `public_subnet_count` | number | `2` | 2 or 3 availability zones; one public and one private subnet in each |
 | `ssh_allowed_cidrs` | list(string) | **required** | your IP as /32; `0.0.0.0/0` is rejected |
-| `app_allowed_cidrs` | list(string) | `["0.0.0.0/0"]` | who can reach ports 80 and the app port |
 | `app_port` | number | `5000` | gunicorn port from the Dockerfile |
+| `app_allowed_cidrs` | list(string) | `["0.0.0.0/0"]` | who can reach the app and HTTP ports |
 | `instance_type` | string | `t3.micro` | limited to `t2.micro`, `t3.micro`, `t3.small` |
 | `ssh_public_key_path` | string | `~/.ssh/sokosmart_f3.pub` | public key loaded into the key pair |
-| `root_volume_size` | number | `20` | GB, 8 to 30 (free tier max is 30) |
+| `root_volume_size` | number | `20` | GB, 8 to 30 |
 
 ## Outputs
 
 | Name | Description |
 |---|---|
-| `instance_public_ip` | public IP of the server (Ansible inventory) |
-| `instance_public_dns` | public DNS name |
-| `instance_id` | EC2 instance ID |
+| `bastion_public_ip` | public IP of the bastion, the only SSH entry point |
+| `bastion_instance_id` | bastion instance ID |
+| `app_private_ip` | private IP of the app VM |
+| `app_instance_id` | app VM instance ID |
 | `vpc_id` | VPC ID |
-| `public_subnet_ids` | subnet IDs |
-| `security_group_id` | app security group ID |
-| `ami_id` | Ubuntu AMI that was used |
+| `public_subnet_ids` | public subnet IDs |
+| `private_subnet_ids` | private subnet IDs, used by the app VM and the RDS subnet group |
+| `nat_public_ip` | outbound IP of the private subnets |
+| `ami_id` | Ubuntu AMI used for the instances |
 | `ssh_user` | `ubuntu` |
-| `ssh_command` | ready-made ssh command |
-| `app_url` | `http://<ip>:5000/health`, works once Ansible deploys the app |
+| `ssh_command` | ready-made SSH command to the app VM through the bastion |
+| `ecr_repository_url` | private registry URL for docker push and pull |
+| `db_endpoint` | RDS host name |
+| `db_port` | RDS port |
+| `db_name` | database name |
+| `db_secret_arn` | ARN of the Secrets Manager secret with the database credentials |
 
 ## Design notes
 
-- **Remote state:** S3 with native lockfile (`use_lockfile = true`), so no
-  DynamoDB table is needed. Bucket and key come from `backend.hcl` because
-  backend blocks can't use variables.
-- **Validation:** region format, environment list, CIDR checks, allowed
-  instance sizes, disk size range, and SSH can't be opened to the world.
-- **for_each:** subnets are keyed by AZ and security group rules by
-  `port-cidr`, so adding an IP adds one rule instead of reshuffling a list.
-- **Tagging standard:** `Project`, `Environment`, `Owner`, `ManagedBy`,
-  `Repository` on everything through provider `default_tags`, plus `Name`
-  per resource. The instance also has `Role = app`.
-- **Hardening:** IMDSv2 required, encrypted gp3 root disk, the VPC default
-  security group is emptied, subnets don't hand out public IPs by default,
-  every rule has a description.
-- **User data** only sets the hostname and makes sure python3 is there.
-  Everything else (Docker, the app, firewall, SSH hardening) is Ansible's job.
+- **Remote state:** S3 with native lockfile (`use_lockfile = true`), so no DynamoDB table is needed. Bucket and key come from `backend.hcl` because backend blocks can't use variables.
+- **Network isolation:** the app VM has no public IP and reaches the internet only through the NAT gateway. RDS sits in the private subnets and accepts connections only from the app security group.
+- **Validation:** region format, environment list, CIDR checks, allowed instance sizes, disk size range, and SSH can't be opened to the world.
+- **Tagging standard:** `Project`, `Environment`, `Owner`, `ManagedBy`, `Repository` on everything through provider `default_tags`, plus `Name` per resource.
+- **Registry:** ECR tags are immutable, so every image is tagged with its commit SHA and `latest` is never used.
+- **Secrets:** the database credentials live in Secrets Manager. The app VM reads them through its instance profile, so no password is stored in the repository.
+- **Checkov:** CI scans this folder on every pull request. A deliberate failure is recorded in `evidence/summative/checkov-failure.txt`.
 
-## For Ansible (Part 2)
+## For Ansible
 
-- Host: `terraform output -raw instance_public_ip`, user `ubuntu`,
-  key `~/.ssh/sokosmart_f3`.
-- For the `aws_ec2` dynamic inventory, filter on
-  `tag:Project = sokosmart` and `tag:Role = app`, region `eu-west-1`.
-- Port 5000 is already open in the security group.
+- Export the outputs with `terraform output -json > outputs.json`.
+- Generate the inventory and settings with `python3 ansible/inventory_from_terraform.py --key ~/.ssh/sokosmart_f3 --image-tag <short SHA> --outputs outputs.json`.
+- Ansible reaches the app VM through the bastion. See `ansible/README.md` for the full flow.
+
+## Evidence
+
+Apply output, plan output and the architecture diagram are in `evidence/summative/`.
 
 ## Troubleshooting
 
-**`Failed to load plugin schemas ... x509: certificate signed by unknown authority`**
-(Windows): antivirus HTTPS scanning (we hit this with Avast) breaks the local
-TLS link between Terraform and the provider. Either add the project folder
-to the antivirus exceptions or set this before running Terraform:
+**`Failed to load plugin schemas ... x509: certificate signed by unknown authority`** (Windows): antivirus HTTPS scanning breaks the local TLS link between Terraform and the provider. Add the project folder to the antivirus exceptions or set this before running Terraform:
 
 ```powershell
 $env:TF_DISABLE_PLUGIN_TLS = "1"
 ```
 
-This only affects the local link between the two processes. Calls to AWS are
-still HTTPS.
+This only affects the local link between the two processes. Calls to AWS are still HTTPS.
 
-**`Backend initialization required`**: you skipped step 1, or forgot
-`-backend-config=backend.hcl` on `terraform init`.
+**`Backend initialization required`**: you skipped step 1, or forgot `-backend-config=backend.hcl` on `terraform init`.
+
+**SSH to the bastion times out:** your public IP has probably changed. Update `ssh_allowed_cidrs` in `terraform.tfvars`, then plan and apply.
