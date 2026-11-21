@@ -139,7 +139,7 @@ Pull requests to `main` and pushes to other branches run:
 2. The image is built and tagged with the short commit SHA. The ECR repository has immutable tags, so `latest` is never used. If the tag already exists, the push is skipped.
 3. The runner authenticates to AWS and logs in to ECR.
 4. It opens port 22 on the bastion security group for the runner's IP only.
-5. It generates the Ansible inventory, then runs `site.yml` with `app_image` set to the SHA tag and `db_secret_arn`, then `proxy.yml`.
+5. It generates the Ansible inventory and `terraform.generated.yml` from the repository variables with `inventory_from_terraform.py --image-tag <short SHA>`, then runs `site.yml`, which deploys the app and configures the nginx proxy on the bastion.
 6. It polls `http://<bastion>/health` until it returns HTTP 200.
 7. A final step always revokes the temporary SSH rule, even when the deploy fails.
 
@@ -168,12 +168,15 @@ terraform output
 Run from WSL Ubuntu on a copy of the repository outside `/mnt/c`, because Ansible ignores `ansible.cfg` on Windows mounts. Strip CRLF line endings in the copy.
 
 ```bash
+cd ~/sokosmart-run
+python3 ansible/inventory_from_terraform.py --key ~/.ssh/sokosmart_f3 --image-tag 8d1c511 --outputs outputs.json
+echo '{}' > ansible/local.yml
 cd ansible
 ansible-galaxy collection install -r requirements.yml
-python3 inventory_from_terraform.py --key ~/.ssh/sokosmart_f3 --outputs outputs.json
-ansible-playbook site.yml -e app_image=<ecr-registry>/sokosmart-price:<sha> -e db_secret_arn=<secret-arn>
-ansible-playbook proxy.yml
+ansible-playbook site.yml -e @terraform.generated.yml -e @local.yml
 ```
+
+`--image-tag` is the short commit SHA of an image that already exists in ECR. The script refuses to overwrite existing generated files unless you add `--force`. `outputs.json` is the export of `terraform output -json`. `site.yml` also configures the nginx proxy, so there is no separate proxy command.
 
 Run the whole `site.yml` without `--limit`, because the app play needs facts from the bastion. See `ansible/README.md` for the roles.
 
@@ -204,7 +207,7 @@ ssh -i $HOME\.ssh\sokosmart_f3 -o "ProxyCommand=ssh -i $HOME\.ssh\sokosmart_f3 -
 
 ### Rollback
 
-Images are immutable and tagged with commit SHAs. To roll back, run the Ansible deploy again with an earlier SHA tag as `app_image`.
+Images are immutable and tagged with commit SHAs. To roll back, run the manual Ansible deploy again with `--force` and `--image-tag` set to an earlier SHA that is still in ECR.
 
 ### Tear down
 
