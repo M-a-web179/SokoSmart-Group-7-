@@ -159,17 +159,18 @@ jobs:
 
       - name: Generate the Ansible inventory
         run: |
-          jq -n --arg b "$BASTION_IP" --arg a "$APP_PRIVATE_IP" \
-            '{bastion_public_ip:{value:$b},app_private_ip:{value:$a},ssh_user:{value:"ubuntu"}}' > "$RUNNER_TEMP/outputs.json"
-          python ansible/inventory_from_terraform.py --key "$HOME/.ssh/sokosmart_deploy" --outputs "$RUNNER_TEMP/outputs.json"
+          jq -n \
+            --arg b "$BASTION_IP" \
+            --arg a "$APP_PRIVATE_IP" \
+            --arg e "${ECR_REGISTRY}/${ECR_REPOSITORY}" \
+            --arg d "$DB_SECRET_ARN" \
+            '{bastion_public_ip:{value:$b},app_private_ip:{value:$a},ssh_user:{value:"ubuntu"},ecr_repository_url:{value:$e},db_secret_arn:{value:$d}}' > "$RUNNER_TEMP/outputs.json"
+          python ansible/inventory_from_terraform.py --key "$HOME/.ssh/sokosmart_deploy" --image-tag "$IMAGE_TAG" --outputs "$RUNNER_TEMP/outputs.json"
+          echo '{}' > ansible/local.yml
 
-      - name: Deploy the application with Ansible
+      - name: Deploy the application and proxy with Ansible
         working-directory: ansible
-        run: ansible-playbook site.yml -e "app_image=${APP_IMAGE}" -e "db_secret_arn=${DB_SECRET_ARN}"
-
-      - name: Configure the bastion proxy with Ansible
-        working-directory: ansible
-        run: ansible-playbook proxy.yml
+        run: ansible-playbook site.yml -e @terraform.generated.yml -e @local.yml
 
       - name: Verify /health through the bastion public IP
         run: |
