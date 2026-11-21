@@ -1,4 +1,25 @@
 ---
+- name: Check that the database secret is provided
+  ansible.builtin.assert:
+    that:
+      - db_secret_arn | length > 0
+    fail_msg: Pass db_secret_arn with the Terraform db_secret_arn output.
+
+- name: Install the AWS SDK for Python
+  ansible.builtin.apt:
+    name: python3-boto3
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Create the application directory
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"
+
 - name: Copy the optional image archive to the server
   ansible.builtin.copy:
     src: "{{ app_image_archive }}"
@@ -20,38 +41,51 @@
     - app_image_archive | length > 0
     - app_archive.changed or app_local_image.images | length == 0
 
-- name: Pull the configured application image
-  community.docker.docker_image:
-    name: "{{ app_image }}"
-    source: pull
-    force_source: false
+- name: Read the registry login password with the instance profile
+  ansible.builtin.script: "aws_fetch.py ecr-token {{ aws_region }}"
+  register: app_ecr_password
+  changed_when: false
+  no_log: true
   when: app_image_archive | length == 0
 
-- name: Run the application with its declared configuration
-  community.docker.docker_container:
-    name: "{{ app_name }}"
-    image: "{{ app_image }}"
-    state: started
-    restart_policy: unless-stopped
-    published_ports:
-      - "{{ app_bind_address }}:{{ app_port }}:{{ app_container_port }}"
-    env: "{{ app_env }}"
-    volumes: "{{ app_volumes }}"
-    healthcheck:
-      test:
-        - CMD
-        - python
-        - -c
-        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:{{ app_container_port }}{{ app_health_path }}', timeout=5)"
-      interval: 15s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-    log_driver: json-file
-    log_options:
-      max-size: 10m
-      max-file: "3"
+- name: Log in to the private registry
+  community.docker.docker_login:
+    registry_url: "{{ ecr_registry }}"
+    username: AWS
+    password: "{{ app_ecr_password.stdout | trim }}"
   no_log: true
+  when: app_image_archive | length == 0
+
+- name: Read the database connection string from Secrets Manager
+  ansible.builtin.script: "aws_fetch.py db-url {{ aws_region }} {{ db_secret_arn }}"
+  register: app_database_url
+  changed_when: false
+  no_log: true
+
+- name: Write the environment file
+  ansible.builtin.template:
+    src: app.env.j2
+    dest: "{{ app_dir }}/app.env"
+    owner: root
+    group: root
+    mode: "0600"
+  no_log: true
+
+- name: Write the Compose file
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ app_dir }}/docker-compose.yml"
+    owner: root
+    group: root
+    mode: "0640"
+
+- name: Start the application with Docker Compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_dir }}"
+    project_name: "{{ app_name }}"
+    state: present
+    pull: missing
+    recreate: auto
 
 - name: Wait for an HTTP 200 health response
   ansible.builtin.uri:
