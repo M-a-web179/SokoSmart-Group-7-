@@ -1,0 +1,1498 @@
+﻿[0m[1mmodule.network.data.aws_availability_zones.available: Reading...[0m[0m
+[0m[1mmodule.iam.data.aws_caller_identity.current: Reading...[0m[0m
+[0m[1mmodule.iam.data.aws_iam_policy_document.assume: Reading...[0m[0m
+[0m[1mmodule.iam.data.aws_region.current: Reading...[0m[0m
+[0m[1mmodule.iam.data.aws_iam_policy_document.assume: Read complete after 0s [id=2851119427][0m
+[0m[1mmodule.iam.data.aws_region.current: Read complete after 0s [id=eu-west-1][0m
+[0m[1mmodule.iam.data.aws_caller_identity.current: Read complete after 0s [id=888281659507][0m
+[0m[1mmodule.network.data.aws_availability_zones.available: Read complete after 2s [id=eu-west-1][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+ [36m<=[0m read (data resources)[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.compute.data.aws_ami.ubuntu[0m will be read during apply
+  # (depends on a resource or a module with changes pending)
+[0m [36m<=[0m[0m data "aws_ami" "ubuntu" {
+      [32m+[0m[0m architecture          = (known after apply)
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m block_device_mappings = (known after apply)
+      [32m+[0m[0m boot_mode             = (known after apply)
+      [32m+[0m[0m creation_date         = (known after apply)
+      [32m+[0m[0m deprecation_time      = (known after apply)
+      [32m+[0m[0m description           = (known after apply)
+      [32m+[0m[0m ena_support           = (known after apply)
+      [32m+[0m[0m hypervisor            = (known after apply)
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m image_id              = (known after apply)
+      [32m+[0m[0m image_location        = (known after apply)
+      [32m+[0m[0m image_owner_alias     = (known after apply)
+      [32m+[0m[0m image_type            = (known after apply)
+      [32m+[0m[0m imds_support          = (known after apply)
+      [32m+[0m[0m kernel_id             = (known after apply)
+      [32m+[0m[0m last_launched_time    = (known after apply)
+      [32m+[0m[0m most_recent           = true
+      [32m+[0m[0m name                  = (known after apply)
+      [32m+[0m[0m owner_id              = (known after apply)
+      [32m+[0m[0m owners                = [
+          [32m+[0m[0m "099720109477",
+        ]
+      [32m+[0m[0m platform              = (known after apply)
+      [32m+[0m[0m platform_details      = (known after apply)
+      [32m+[0m[0m product_codes         = (known after apply)
+      [32m+[0m[0m public                = (known after apply)
+      [32m+[0m[0m ramdisk_id            = (known after apply)
+      [32m+[0m[0m region                = (known after apply)
+      [32m+[0m[0m root_device_name      = (known after apply)
+      [32m+[0m[0m root_device_type      = (known after apply)
+      [32m+[0m[0m root_snapshot_id      = (known after apply)
+      [32m+[0m[0m sriov_net_support     = (known after apply)
+      [32m+[0m[0m state                 = (known after apply)
+      [32m+[0m[0m state_reason          = (known after apply)
+      [32m+[0m[0m tags                  = (known after apply)
+      [32m+[0m[0m tpm_support           = (known after apply)
+      [32m+[0m[0m usage_operation       = (known after apply)
+      [32m+[0m[0m virtualization_type   = (known after apply)
+
+      [32m+[0m[0m filter {
+          [32m+[0m[0m name   = "architecture"
+          [32m+[0m[0m values = [
+              [32m+[0m[0m "x86_64",
+            ]
+        }
+      [32m+[0m[0m filter {
+          [32m+[0m[0m name   = "name"
+          [32m+[0m[0m values = [
+              [32m+[0m[0m "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*",
+            ]
+        }
+      [32m+[0m[0m filter {
+          [32m+[0m[0m name   = "virtualization-type"
+          [32m+[0m[0m values = [
+              [32m+[0m[0m "hvm",
+            ]
+        }
+    }
+
+[1m  # module.compute.aws_instance.app[0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "app" {
+      [32m+[0m[0m ami                                  = (known after apply)
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = false
+      [32m+[0m[0m availability_zone                    = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = true
+      [32m+[0m[0m enable_primary_ipv6                  = (known after apply)
+      [32m+[0m[0m force_destroy                        = false
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = "sokosmart-dev-app"
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.micro"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "sokosmart-dev-key"
+      [32m+[0m[0m monitoring                           = false
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_group_id                   = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m region                               = "eu-west-1"
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = true
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-app"
+          [32m+[0m[0m "Role" = "app"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-app"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+          [32m+[0m[0m "Role"        = "app"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = <<-EOT
+            #!/bin/bash
+            # First boot only. Keep this small: real configuration is done by Ansible.
+            set -euo pipefail
+            
+            hostnamectl set-hostname sokosmart-dev-app
+            
+            # Ansible needs python3 on the target; Ubuntu ships it but make sure
+            apt-get update -y
+            apt-get install -y python3 python3-apt
+            
+            echo "bootstrapped by terraform on $(date -u)" > /etc/motd.d/10-terraform 2>/dev/null || true
+        EOT
+      [32m+[0m[0m user_data_base64                     = (known after apply)
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m capacity_reservation_specification (known after apply)
+
+      [32m+[0m[0m cpu_options (known after apply)
+
+      [32m+[0m[0m ebs_block_device (known after apply)
+
+      [32m+[0m[0m enclave_options (known after apply)
+
+      [32m+[0m[0m ephemeral_block_device (known after apply)
+
+      [32m+[0m[0m instance_market_options (known after apply)
+
+      [32m+[0m[0m maintenance_options (known after apply)
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "required"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m network_interface (known after apply)
+
+      [32m+[0m[0m primary_network_interface (known after apply)
+
+      [32m+[0m[0m private_dns_name_options (known after apply)
+
+      [32m+[0m[0m root_block_device {
+          [32m+[0m[0m delete_on_termination = true
+          [32m+[0m[0m device_name           = (known after apply)
+          [32m+[0m[0m encrypted             = true
+          [32m+[0m[0m iops                  = (known after apply)
+          [32m+[0m[0m kms_key_id            = (known after apply)
+          [32m+[0m[0m tags                  = {
+              [32m+[0m[0m "Name" = "sokosmart-dev-app-root"
+            }
+          [32m+[0m[0m tags_all              = (known after apply)
+          [32m+[0m[0m throughput            = (known after apply)
+          [32m+[0m[0m volume_id             = (known after apply)
+          [32m+[0m[0m volume_size           = 20
+          [32m+[0m[0m volume_type           = "gp3"
+        }
+
+      [32m+[0m[0m secondary_network_interface (known after apply)
+    }
+
+[1m  # module.compute.aws_instance.bastion[0m will be created
+[0m  [32m+[0m[0m resource "aws_instance" "bastion" {
+      [32m+[0m[0m ami                                  = (known after apply)
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m associate_public_ip_address          = true
+      [32m+[0m[0m availability_zone                    = (known after apply)
+      [32m+[0m[0m disable_api_stop                     = (known after apply)
+      [32m+[0m[0m disable_api_termination              = (known after apply)
+      [32m+[0m[0m ebs_optimized                        = true
+      [32m+[0m[0m enable_primary_ipv6                  = (known after apply)
+      [32m+[0m[0m force_destroy                        = false
+      [32m+[0m[0m get_password_data                    = false
+      [32m+[0m[0m host_id                              = (known after apply)
+      [32m+[0m[0m host_resource_group_arn              = (known after apply)
+      [32m+[0m[0m iam_instance_profile                 = (known after apply)
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_initiated_shutdown_behavior = (known after apply)
+      [32m+[0m[0m instance_lifecycle                   = (known after apply)
+      [32m+[0m[0m instance_state                       = (known after apply)
+      [32m+[0m[0m instance_type                        = "t3.micro"
+      [32m+[0m[0m ipv6_address_count                   = (known after apply)
+      [32m+[0m[0m ipv6_addresses                       = (known after apply)
+      [32m+[0m[0m key_name                             = "sokosmart-dev-key"
+      [32m+[0m[0m monitoring                           = false
+      [32m+[0m[0m outpost_arn                          = (known after apply)
+      [32m+[0m[0m password_data                        = (known after apply)
+      [32m+[0m[0m placement_group                      = (known after apply)
+      [32m+[0m[0m placement_group_id                   = (known after apply)
+      [32m+[0m[0m placement_partition_number           = (known after apply)
+      [32m+[0m[0m primary_network_interface_id         = (known after apply)
+      [32m+[0m[0m private_dns                          = (known after apply)
+      [32m+[0m[0m private_ip                           = (known after apply)
+      [32m+[0m[0m public_dns                           = (known after apply)
+      [32m+[0m[0m public_ip                            = (known after apply)
+      [32m+[0m[0m region                               = "eu-west-1"
+      [32m+[0m[0m secondary_private_ips                = (known after apply)
+      [32m+[0m[0m security_groups                      = (known after apply)
+      [32m+[0m[0m source_dest_check                    = true
+      [32m+[0m[0m spot_instance_request_id             = (known after apply)
+      [32m+[0m[0m subnet_id                            = (known after apply)
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-bastion"
+          [32m+[0m[0m "Role" = "bastion"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-bastion"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+          [32m+[0m[0m "Role"        = "bastion"
+        }
+      [32m+[0m[0m tenancy                              = (known after apply)
+      [32m+[0m[0m user_data                            = <<-EOT
+            #!/bin/bash
+            # First boot only. Keep this small: real configuration is done by Ansible.
+            set -euo pipefail
+            
+            hostnamectl set-hostname sokosmart-dev-bastion
+            
+            # Ansible needs python3 on the target; Ubuntu ships it but make sure
+            apt-get update -y
+            apt-get install -y python3 python3-apt
+            
+            echo "bootstrapped by terraform on $(date -u)" > /etc/motd.d/10-terraform 2>/dev/null || true
+        EOT
+      [32m+[0m[0m user_data_base64                     = (known after apply)
+      [32m+[0m[0m user_data_replace_on_change          = false
+      [32m+[0m[0m vpc_security_group_ids               = (known after apply)
+
+      [32m+[0m[0m capacity_reservation_specification (known after apply)
+
+      [32m+[0m[0m cpu_options (known after apply)
+
+      [32m+[0m[0m ebs_block_device (known after apply)
+
+      [32m+[0m[0m enclave_options (known after apply)
+
+      [32m+[0m[0m ephemeral_block_device (known after apply)
+
+      [32m+[0m[0m instance_market_options (known after apply)
+
+      [32m+[0m[0m maintenance_options (known after apply)
+
+      [32m+[0m[0m metadata_options {
+          [32m+[0m[0m http_endpoint               = "enabled"
+          [32m+[0m[0m http_protocol_ipv6          = "disabled"
+          [32m+[0m[0m http_put_response_hop_limit = 1
+          [32m+[0m[0m http_tokens                 = "required"
+          [32m+[0m[0m instance_metadata_tags      = (known after apply)
+        }
+
+      [32m+[0m[0m network_interface (known after apply)
+
+      [32m+[0m[0m primary_network_interface (known after apply)
+
+      [32m+[0m[0m private_dns_name_options (known after apply)
+
+      [32m+[0m[0m root_block_device {
+          [32m+[0m[0m delete_on_termination = true
+          [32m+[0m[0m device_name           = (known after apply)
+          [32m+[0m[0m encrypted             = true
+          [32m+[0m[0m iops                  = (known after apply)
+          [32m+[0m[0m kms_key_id            = (known after apply)
+          [32m+[0m[0m tags                  = {
+              [32m+[0m[0m "Name" = "sokosmart-dev-bastion-root"
+            }
+          [32m+[0m[0m tags_all              = (known after apply)
+          [32m+[0m[0m throughput            = (known after apply)
+          [32m+[0m[0m volume_id             = (known after apply)
+          [32m+[0m[0m volume_size           = 8
+          [32m+[0m[0m volume_type           = "gp3"
+        }
+
+      [32m+[0m[0m secondary_network_interface (known after apply)
+    }
+
+[1m  # module.compute.aws_key_pair.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_key_pair" "this" {
+      [32m+[0m[0m arn             = (known after apply)
+      [32m+[0m[0m fingerprint     = (known after apply)
+      [32m+[0m[0m id              = (known after apply)
+      [32m+[0m[0m key_name        = "sokosmart-dev-key"
+      [32m+[0m[0m key_name_prefix = (known after apply)
+      [32m+[0m[0m key_pair_id     = (known after apply)
+      [32m+[0m[0m key_type        = (known after apply)
+      [32m+[0m[0m public_key      = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIfHpq03OTKr54+uITXmKegkbZdY1Nd2gtPyG/5RI5w9 sokosmart-f3"
+      [32m+[0m[0m region          = "eu-west-1"
+      [32m+[0m[0m tags            = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-key"
+        }
+      [32m+[0m[0m tags_all        = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-key"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+    }
+
+[1m  # module.database.aws_db_instance.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_db_instance" "this" {
+      [32m+[0m[0m address                               = (known after apply)
+      [32m+[0m[0m allocated_storage                     = 20
+      [32m+[0m[0m apply_immediately                     = false
+      [32m+[0m[0m arn                                   = (known after apply)
+      [32m+[0m[0m auto_minor_version_upgrade            = true
+      [32m+[0m[0m availability_zone                     = (known after apply)
+      [32m+[0m[0m backup_retention_period               = 1
+      [32m+[0m[0m backup_target                         = (known after apply)
+      [32m+[0m[0m backup_window                         = (known after apply)
+      [32m+[0m[0m ca_cert_identifier                    = (known after apply)
+      [32m+[0m[0m character_set_name                    = (known after apply)
+      [32m+[0m[0m copy_tags_to_snapshot                 = true
+      [32m+[0m[0m database_insights_mode                = (known after apply)
+      [32m+[0m[0m db_name                               = "sokosmart"
+      [32m+[0m[0m db_subnet_group_name                  = "sokosmart-dev-db-subnets"
+      [32m+[0m[0m dedicated_log_volume                  = false
+      [32m+[0m[0m delete_automated_backups              = true
+      [32m+[0m[0m deletion_protection                   = false
+      [32m+[0m[0m domain_fqdn                           = (known after apply)
+      [32m+[0m[0m enabled_cloudwatch_logs_exports       = [
+          [32m+[0m[0m "postgresql",
+          [32m+[0m[0m "upgrade",
+        ]
+      [32m+[0m[0m endpoint                              = (known after apply)
+      [32m+[0m[0m engine                                = "postgres"
+      [32m+[0m[0m engine_lifecycle_support              = (known after apply)
+      [32m+[0m[0m engine_version                        = "16"
+      [32m+[0m[0m engine_version_actual                 = (known after apply)
+      [32m+[0m[0m hosted_zone_id                        = (known after apply)
+      [32m+[0m[0m iam_database_authentication_enabled   = true
+      [32m+[0m[0m id                                    = (known after apply)
+      [32m+[0m[0m identifier                            = "sokosmart-dev-db"
+      [32m+[0m[0m identifier_prefix                     = (known after apply)
+      [32m+[0m[0m instance_class                        = "db.t4g.micro"
+      [32m+[0m[0m iops                                  = (known after apply)
+      [32m+[0m[0m kms_key_id                            = (known after apply)
+      [32m+[0m[0m latest_restorable_time                = (known after apply)
+      [32m+[0m[0m license_model                         = (known after apply)
+      [32m+[0m[0m listener_endpoint                     = (known after apply)
+      [32m+[0m[0m maintenance_window                    = (known after apply)
+      [32m+[0m[0m master_user_secret                    = (known after apply)
+      [32m+[0m[0m master_user_secret_kms_key_id         = (known after apply)
+      [32m+[0m[0m monitoring_interval                   = 0
+      [32m+[0m[0m monitoring_role_arn                   = (known after apply)
+      [32m+[0m[0m multi_az                              = false
+      [32m+[0m[0m multi_tenant                          = (known after apply)
+      [32m+[0m[0m nchar_character_set_name              = (known after apply)
+      [32m+[0m[0m network_type                          = (known after apply)
+      [32m+[0m[0m option_group_name                     = (known after apply)
+      [32m+[0m[0m parameter_group_name                  = (known after apply)
+      [32m+[0m[0m password                              = (sensitive value)
+      [32m+[0m[0m password_wo                           = (write-only attribute)
+      [32m+[0m[0m performance_insights_enabled          = false
+      [32m+[0m[0m performance_insights_kms_key_id       = (known after apply)
+      [32m+[0m[0m performance_insights_retention_period = (known after apply)
+      [32m+[0m[0m port                                  = (known after apply)
+      [32m+[0m[0m publicly_accessible                   = false
+      [32m+[0m[0m region                                = "eu-west-1"
+      [32m+[0m[0m replica_mode                          = (known after apply)
+      [32m+[0m[0m replicas                              = (known after apply)
+      [32m+[0m[0m resource_id                           = (known after apply)
+      [32m+[0m[0m skip_final_snapshot                   = true
+      [32m+[0m[0m snapshot_identifier                   = (known after apply)
+      [32m+[0m[0m status                                = (known after apply)
+      [32m+[0m[0m storage_encrypted                     = true
+      [32m+[0m[0m storage_throughput                    = (known after apply)
+      [32m+[0m[0m storage_type                          = "gp3"
+      [32m+[0m[0m tags                                  = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-db"
+        }
+      [32m+[0m[0m tags_all                              = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-db"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m timezone                              = (known after apply)
+      [32m+[0m[0m upgrade_rollout_order                 = (known after apply)
+      [32m+[0m[0m username                              = "sokosmart_app"
+      [32m+[0m[0m vpc_security_group_ids                = (known after apply)
+    }
+
+[1m  # module.database.aws_db_subnet_group.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_db_subnet_group" "this" {
+      [32m+[0m[0m arn                     = (known after apply)
+      [32m+[0m[0m description             = "Managed by Terraform"
+      [32m+[0m[0m id                      = (known after apply)
+      [32m+[0m[0m name                    = "sokosmart-dev-db-subnets"
+      [32m+[0m[0m name_prefix             = (known after apply)
+      [32m+[0m[0m region                  = "eu-west-1"
+      [32m+[0m[0m subnet_ids              = (known after apply)
+      [32m+[0m[0m supported_network_types = (known after apply)
+      [32m+[0m[0m tags                    = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-db-subnets"
+        }
+      [32m+[0m[0m tags_all                = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-db-subnets"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id                  = (known after apply)
+    }
+
+[1m  # module.database.aws_secretsmanager_secret.db[0m will be created
+[0m  [32m+[0m[0m resource "aws_secretsmanager_secret" "db" {
+      [32m+[0m[0m arn                            = (known after apply)
+      [32m+[0m[0m description                    = "SokoSmart database credentials"
+      [32m+[0m[0m force_overwrite_replica_secret = false
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m name                           = "sokosmart-dev/database"
+      [32m+[0m[0m name_prefix                    = (known after apply)
+      [32m+[0m[0m policy                         = (known after apply)
+      [32m+[0m[0m recovery_window_in_days        = 0
+      [32m+[0m[0m region                         = "eu-west-1"
+      [32m+[0m[0m tags                           = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-db-credentials"
+        }
+      [32m+[0m[0m tags_all                       = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-db-credentials"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+    }
+
+[1m  # module.database.aws_secretsmanager_secret_version.db[0m will be created
+[0m  [32m+[0m[0m resource "aws_secretsmanager_secret_version" "db" {
+      [32m+[0m[0m arn                  = (known after apply)
+      [32m+[0m[0m has_secret_string_wo = (known after apply)
+      [32m+[0m[0m id                   = (known after apply)
+      [32m+[0m[0m region               = "eu-west-1"
+      [32m+[0m[0m secret_arn           = (known after apply)
+      [32m+[0m[0m secret_id            = (known after apply)
+      [32m+[0m[0m secret_string        = (sensitive value)
+      [32m+[0m[0m secret_string_wo     = (write-only attribute)
+      [32m+[0m[0m version_id           = (known after apply)
+      [32m+[0m[0m version_stages       = (known after apply)
+    }
+
+[1m  # module.database.random_password.db[0m will be created
+[0m  [32m+[0m[0m resource "random_password" "db" {
+      [32m+[0m[0m bcrypt_hash      = (sensitive value)
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m length           = 24
+      [32m+[0m[0m lower            = true
+      [32m+[0m[0m min_lower        = 0
+      [32m+[0m[0m min_numeric      = 0
+      [32m+[0m[0m min_special      = 0
+      [32m+[0m[0m min_upper        = 0
+      [32m+[0m[0m number           = true
+      [32m+[0m[0m numeric          = true
+      [32m+[0m[0m override_special = "!#$%^&*()-_=+"
+      [32m+[0m[0m result           = (sensitive value)
+      [32m+[0m[0m special          = true
+      [32m+[0m[0m upper            = true
+    }
+
+[1m  # module.ecr.aws_ecr_lifecycle_policy.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_ecr_lifecycle_policy" "this" {
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m policy      = jsonencode(
+            {
+              [32m+[0m[0m rules = [
+                  [32m+[0m[0m {
+                      [32m+[0m[0m action       = {
+                          [32m+[0m[0m type = "expire"
+                        }
+                      [32m+[0m[0m description  = "Keep the last 10 images"
+                      [32m+[0m[0m rulePriority = 1
+                      [32m+[0m[0m selection    = {
+                          [32m+[0m[0m countNumber = 10
+                          [32m+[0m[0m countType   = "imageCountMoreThan"
+                          [32m+[0m[0m tagStatus   = "any"
+                        }
+                    },
+                ]
+            }
+        )
+      [32m+[0m[0m region      = "eu-west-1"
+      [32m+[0m[0m registry_id = (known after apply)
+      [32m+[0m[0m repository  = "sokosmart-price"
+    }
+
+[1m  # module.ecr.aws_ecr_repository.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_ecr_repository" "this" {
+      [32m+[0m[0m arn                  = (known after apply)
+      [32m+[0m[0m force_delete         = true
+      [32m+[0m[0m id                   = (known after apply)
+      [32m+[0m[0m image_tag_mutability = "IMMUTABLE"
+      [32m+[0m[0m name                 = "sokosmart-price"
+      [32m+[0m[0m region               = "eu-west-1"
+      [32m+[0m[0m registry_id          = (known after apply)
+      [32m+[0m[0m repository_url       = (known after apply)
+      [32m+[0m[0m tags                 = {
+          [32m+[0m[0m "Name" = "sokosmart-price"
+        }
+      [32m+[0m[0m tags_all             = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-price"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+
+      [32m+[0m[0m encryption_configuration {
+          [32m+[0m[0m encryption_type = "AES256"
+          [32m+[0m[0m kms_key         = (known after apply)
+        }
+
+      [32m+[0m[0m image_scanning_configuration {
+          [32m+[0m[0m scan_on_push = true
+        }
+    }
+
+[1m  # module.iam.data.aws_iam_policy_document.app[0m will be read during apply
+  # (config refers to values not yet known)
+[0m [36m<=[0m[0m data "aws_iam_policy_document" "app" {
+      [32m+[0m[0m id            = (known after apply)
+      [32m+[0m[0m json          = (known after apply)
+      [32m+[0m[0m minified_json = (known after apply)
+
+      [32m+[0m[0m statement {
+          [32m+[0m[0m actions   = [
+              [32m+[0m[0m "ecr:GetAuthorizationToken",
+            ]
+          [32m+[0m[0m resources = [
+              [32m+[0m[0m "*",
+            ]
+          [32m+[0m[0m sid       = "EcrAuthToken"
+        }
+      [32m+[0m[0m statement {
+          [32m+[0m[0m actions   = [
+              [32m+[0m[0m "ecr:BatchCheckLayerAvailability",
+              [32m+[0m[0m "ecr:BatchGetImage",
+              [32m+[0m[0m "ecr:GetDownloadUrlForLayer",
+            ]
+          [32m+[0m[0m resources = [
+              [32m+[0m[0m "arn:aws:ecr:eu-west-1:888281659507:repository/sokosmart-price",
+            ]
+          [32m+[0m[0m sid       = "EcrPull"
+        }
+      [32m+[0m[0m statement {
+          [32m+[0m[0m actions   = [
+              [32m+[0m[0m "secretsmanager:DescribeSecret",
+              [32m+[0m[0m "secretsmanager:GetSecretValue",
+            ]
+          [32m+[0m[0m resources = [
+              [32m+[0m[0m (known after apply),
+            ]
+          [32m+[0m[0m sid       = "ReadDatabaseSecret"
+        }
+    }
+
+[1m  # module.iam.aws_iam_instance_profile.app[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_instance_profile" "app" {
+      [32m+[0m[0m arn         = (known after apply)
+      [32m+[0m[0m create_date = (known after apply)
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m name        = "sokosmart-dev-app"
+      [32m+[0m[0m name_prefix = (known after apply)
+      [32m+[0m[0m path        = "/"
+      [32m+[0m[0m role        = "sokosmart-dev-app"
+      [32m+[0m[0m tags_all    = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m unique_id   = (known after apply)
+    }
+
+[1m  # module.iam.aws_iam_role.app[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_role" "app" {
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m assume_role_policy    = jsonencode(
+            {
+              [32m+[0m[0m Statement = [
+                  [32m+[0m[0m {
+                      [32m+[0m[0m Action    = "sts:AssumeRole"
+                      [32m+[0m[0m Effect    = "Allow"
+                      [32m+[0m[0m Principal = {
+                          [32m+[0m[0m Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              [32m+[0m[0m Version   = "2012-10-17"
+            }
+        )
+      [32m+[0m[0m create_date           = (known after apply)
+      [32m+[0m[0m force_detach_policies = false
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m managed_policy_arns   = (known after apply)
+      [32m+[0m[0m max_session_duration  = 3600
+      [32m+[0m[0m name                  = "sokosmart-dev-app"
+      [32m+[0m[0m name_prefix           = (known after apply)
+      [32m+[0m[0m path                  = "/"
+      [32m+[0m[0m tags_all              = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m unique_id             = (known after apply)
+
+      [32m+[0m[0m inline_policy (known after apply)
+    }
+
+[1m  # module.iam.aws_iam_role_policy.app[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_role_policy" "app" {
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m name        = "sokosmart-dev-app-access"
+      [32m+[0m[0m name_prefix = (known after apply)
+      [32m+[0m[0m policy      = (known after apply)
+      [32m+[0m[0m role        = (known after apply)
+    }
+
+[1m  # module.network.aws_default_security_group.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_default_security_group" "this" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = (known after apply)
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = (known after apply)
+      [32m+[0m[0m name_prefix            = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-default-sg"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-default-sg"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+    }
+
+[1m  # module.network.aws_eip.nat[0m will be created
+[0m  [32m+[0m[0m resource "aws_eip" "nat" {
+      [32m+[0m[0m allocation_id        = (known after apply)
+      [32m+[0m[0m arn                  = (known after apply)
+      [32m+[0m[0m association_id       = (known after apply)
+      [32m+[0m[0m carrier_ip           = (known after apply)
+      [32m+[0m[0m customer_owned_ip    = (known after apply)
+      [32m+[0m[0m domain               = "vpc"
+      [32m+[0m[0m id                   = (known after apply)
+      [32m+[0m[0m instance             = (known after apply)
+      [32m+[0m[0m ipam_pool_id         = (known after apply)
+      [32m+[0m[0m network_border_group = (known after apply)
+      [32m+[0m[0m network_interface    = (known after apply)
+      [32m+[0m[0m private_dns          = (known after apply)
+      [32m+[0m[0m private_ip           = (known after apply)
+      [32m+[0m[0m ptr_record           = (known after apply)
+      [32m+[0m[0m public_dns           = (known after apply)
+      [32m+[0m[0m public_ip            = (known after apply)
+      [32m+[0m[0m public_ipv4_pool     = (known after apply)
+      [32m+[0m[0m region               = "eu-west-1"
+      [32m+[0m[0m tags                 = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-nat-eip"
+        }
+      [32m+[0m[0m tags_all             = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-nat-eip"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+    }
+
+[1m  # module.network.aws_internet_gateway.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_internet_gateway" "this" {
+      [32m+[0m[0m arn      = (known after apply)
+      [32m+[0m[0m id       = (known after apply)
+      [32m+[0m[0m owner_id = (known after apply)
+      [32m+[0m[0m region   = "eu-west-1"
+      [32m+[0m[0m tags     = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-igw"
+        }
+      [32m+[0m[0m tags_all = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-igw"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id   = (known after apply)
+    }
+
+[1m  # module.network.aws_nat_gateway.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_nat_gateway" "this" {
+      [32m+[0m[0m allocation_id                      = (known after apply)
+      [32m+[0m[0m association_id                     = (known after apply)
+      [32m+[0m[0m auto_provision_zones               = (known after apply)
+      [32m+[0m[0m auto_scaling_ips                   = (known after apply)
+      [32m+[0m[0m availability_mode                  = (known after apply)
+      [32m+[0m[0m connectivity_type                  = "public"
+      [32m+[0m[0m id                                 = (known after apply)
+      [32m+[0m[0m network_interface_id               = (known after apply)
+      [32m+[0m[0m private_ip                         = (known after apply)
+      [32m+[0m[0m public_ip                          = (known after apply)
+      [32m+[0m[0m region                             = "eu-west-1"
+      [32m+[0m[0m regional_nat_gateway_address       = (known after apply)
+      [32m+[0m[0m regional_nat_gateway_auto_mode     = (known after apply)
+      [32m+[0m[0m route_table_id                     = (known after apply)
+      [32m+[0m[0m secondary_allocation_ids           = (known after apply)
+      [32m+[0m[0m secondary_private_ip_address_count = (known after apply)
+      [32m+[0m[0m secondary_private_ip_addresses     = (known after apply)
+      [32m+[0m[0m subnet_id                          = (known after apply)
+      [32m+[0m[0m tags                               = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-nat"
+        }
+      [32m+[0m[0m tags_all                           = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-nat"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id                             = (known after apply)
+    }
+
+[1m  # module.network.aws_route.internet[0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "internet" {
+      [32m+[0m[0m destination_cidr_block = "0.0.0.0/0"
+      [32m+[0m[0m gateway_id             = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+    }
+
+[1m  # module.network.aws_route.private_nat[0m will be created
+[0m  [32m+[0m[0m resource "aws_route" "private_nat" {
+      [32m+[0m[0m destination_cidr_block = "0.0.0.0/0"
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m instance_id            = (known after apply)
+      [32m+[0m[0m instance_owner_id      = (known after apply)
+      [32m+[0m[0m nat_gateway_id         = (known after apply)
+      [32m+[0m[0m network_interface_id   = (known after apply)
+      [32m+[0m[0m origin                 = (known after apply)
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m route_table_id         = (known after apply)
+      [32m+[0m[0m state                  = (known after apply)
+    }
+
+[1m  # module.network.aws_route_table.private[0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table" "private" {
+      [32m+[0m[0m arn              = (known after apply)
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m owner_id         = (known after apply)
+      [32m+[0m[0m propagating_vgws = (known after apply)
+      [32m+[0m[0m region           = "eu-west-1"
+      [32m+[0m[0m route            = (known after apply)
+      [32m+[0m[0m tags             = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-private-rt"
+        }
+      [32m+[0m[0m tags_all         = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-private-rt"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id           = (known after apply)
+    }
+
+[1m  # module.network.aws_route_table.public[0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table" "public" {
+      [32m+[0m[0m arn              = (known after apply)
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m owner_id         = (known after apply)
+      [32m+[0m[0m propagating_vgws = (known after apply)
+      [32m+[0m[0m region           = "eu-west-1"
+      [32m+[0m[0m route            = (known after apply)
+      [32m+[0m[0m tags             = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-public-rt"
+        }
+      [32m+[0m[0m tags_all         = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-public-rt"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id           = (known after apply)
+    }
+
+[1m  # module.network.aws_route_table_association.private["eu-west-1a"][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table_association" "private" {
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m region         = "eu-west-1"
+      [32m+[0m[0m route_table_id = (known after apply)
+      [32m+[0m[0m subnet_id      = (known after apply)
+    }
+
+[1m  # module.network.aws_route_table_association.private["eu-west-1b"][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table_association" "private" {
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m region         = "eu-west-1"
+      [32m+[0m[0m route_table_id = (known after apply)
+      [32m+[0m[0m subnet_id      = (known after apply)
+    }
+
+[1m  # module.network.aws_route_table_association.public["eu-west-1a"][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table_association" "public" {
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m region         = "eu-west-1"
+      [32m+[0m[0m route_table_id = (known after apply)
+      [32m+[0m[0m subnet_id      = (known after apply)
+    }
+
+[1m  # module.network.aws_route_table_association.public["eu-west-1b"][0m will be created
+[0m  [32m+[0m[0m resource "aws_route_table_association" "public" {
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m region         = "eu-west-1"
+      [32m+[0m[0m route_table_id = (known after apply)
+      [32m+[0m[0m subnet_id      = (known after apply)
+    }
+
+[1m  # module.network.aws_subnet.private["eu-west-1a"][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "private" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "eu-west-1a"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.20.10.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block                                = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = false
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m region                                         = "eu-west-1"
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-private-eu-west-1a"
+          [32m+[0m[0m "Tier" = "private"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-private-eu-west-1a"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+          [32m+[0m[0m "Tier"        = "private"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # module.network.aws_subnet.private["eu-west-1b"][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "private" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "eu-west-1b"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.20.11.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block                                = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = false
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m region                                         = "eu-west-1"
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-private-eu-west-1b"
+          [32m+[0m[0m "Tier" = "private"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-private-eu-west-1b"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+          [32m+[0m[0m "Tier"        = "private"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # module.network.aws_subnet.public["eu-west-1a"][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "public" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "eu-west-1a"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.20.0.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block                                = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = false
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m region                                         = "eu-west-1"
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-public-eu-west-1a"
+          [32m+[0m[0m "Tier" = "public"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-public-eu-west-1a"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+          [32m+[0m[0m "Tier"        = "public"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # module.network.aws_subnet.public["eu-west-1b"][0m will be created
+[0m  [32m+[0m[0m resource "aws_subnet" "public" {
+      [32m+[0m[0m arn                                            = (known after apply)
+      [32m+[0m[0m assign_ipv6_address_on_creation                = false
+      [32m+[0m[0m availability_zone                              = "eu-west-1b"
+      [32m+[0m[0m availability_zone_id                           = (known after apply)
+      [32m+[0m[0m cidr_block                                     = "10.20.1.0/24"
+      [32m+[0m[0m enable_dns64                                   = false
+      [32m+[0m[0m enable_resource_name_dns_a_record_on_launch    = false
+      [32m+[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false
+      [32m+[0m[0m id                                             = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block                                = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_association_id                 = (known after apply)
+      [32m+[0m[0m ipv6_native                                    = false
+      [32m+[0m[0m map_public_ip_on_launch                        = false
+      [32m+[0m[0m owner_id                                       = (known after apply)
+      [32m+[0m[0m private_dns_hostname_type_on_launch            = (known after apply)
+      [32m+[0m[0m region                                         = "eu-west-1"
+      [32m+[0m[0m tags                                           = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-public-eu-west-1b"
+          [32m+[0m[0m "Tier" = "public"
+        }
+      [32m+[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-public-eu-west-1b"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+          [32m+[0m[0m "Tier"        = "public"
+        }
+      [32m+[0m[0m vpc_id                                         = (known after apply)
+    }
+
+[1m  # module.network.aws_vpc.this[0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc" "this" {
+      [32m+[0m[0m arn                                  = (known after apply)
+      [32m+[0m[0m cidr_block                           = "10.20.0.0/16"
+      [32m+[0m[0m default_network_acl_id               = (known after apply)
+      [32m+[0m[0m default_route_table_id               = (known after apply)
+      [32m+[0m[0m default_security_group_id            = (known after apply)
+      [32m+[0m[0m dhcp_options_id                      = (known after apply)
+      [32m+[0m[0m enable_dns_hostnames                 = true
+      [32m+[0m[0m enable_dns_support                   = true
+      [32m+[0m[0m enable_network_address_usage_metrics = (known after apply)
+      [32m+[0m[0m id                                   = (known after apply)
+      [32m+[0m[0m instance_tenancy                     = "default"
+      [32m+[0m[0m ipv6_association_id                  = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block                      = (known after apply)
+      [32m+[0m[0m ipv6_cidr_block_network_border_group = (known after apply)
+      [32m+[0m[0m main_route_table_id                  = (known after apply)
+      [32m+[0m[0m owner_id                             = (known after apply)
+      [32m+[0m[0m region                               = "eu-west-1"
+      [32m+[0m[0m tags                                 = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-vpc"
+        }
+      [32m+[0m[0m tags_all                             = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-vpc"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+    }
+
+[1m  # module.security.aws_security_group.app[0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "app" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "App VM: SSH and app port from the bastion only"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = "sokosmart-dev-app-sg"
+      [32m+[0m[0m name_prefix            = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-app-sg"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-app-sg"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+    }
+
+[1m  # module.security.aws_security_group.bastion[0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "bastion" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "Bastion host: SSH from admin IPs, public HTTP"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = "sokosmart-dev-bastion-sg"
+      [32m+[0m[0m name_prefix            = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-bastion-sg"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-bastion-sg"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+    }
+
+[1m  # module.security.aws_security_group.db[0m will be created
+[0m  [32m+[0m[0m resource "aws_security_group" "db" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m description            = "Database: PostgreSQL from the app VM only"
+      [32m+[0m[0m egress                 = (known after apply)
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ingress                = (known after apply)
+      [32m+[0m[0m name                   = "sokosmart-dev-db-sg"
+      [32m+[0m[0m name_prefix            = (known after apply)
+      [32m+[0m[0m owner_id               = (known after apply)
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m revoke_rules_on_delete = false
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-db-sg"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-db-sg"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m vpc_id                 = (known after apply)
+    }
+
+[1m  # module.security.aws_vpc_security_group_egress_rule.app_internet["http"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_egress_rule" "app_internet" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m cidr_ipv4              = "0.0.0.0/0"
+      [32m+[0m[0m description            = "App outbound HTTP via NAT for ECR and packages"
+      [32m+[0m[0m from_port              = 80
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ip_protocol            = "tcp"
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m security_group_id      = (known after apply)
+      [32m+[0m[0m security_group_rule_id = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-app-out-http"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-app-out-http"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                = 80
+    }
+
+[1m  # module.security.aws_vpc_security_group_egress_rule.app_internet["https"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_egress_rule" "app_internet" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m cidr_ipv4              = "0.0.0.0/0"
+      [32m+[0m[0m description            = "App outbound HTTPS via NAT for ECR and packages"
+      [32m+[0m[0m from_port              = 443
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ip_protocol            = "tcp"
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m security_group_id      = (known after apply)
+      [32m+[0m[0m security_group_rule_id = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-app-out-https"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-app-out-https"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                = 443
+    }
+
+[1m  # module.security.aws_vpc_security_group_egress_rule.app_to_db[0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_egress_rule" "app_to_db" {
+      [32m+[0m[0m arn                          = (known after apply)
+      [32m+[0m[0m description                  = "PostgreSQL to the database"
+      [32m+[0m[0m from_port                    = 5432
+      [32m+[0m[0m id                           = (known after apply)
+      [32m+[0m[0m ip_protocol                  = "tcp"
+      [32m+[0m[0m referenced_security_group_id = (known after apply)
+      [32m+[0m[0m region                       = "eu-west-1"
+      [32m+[0m[0m security_group_id            = (known after apply)
+      [32m+[0m[0m security_group_rule_id       = (known after apply)
+      [32m+[0m[0m tags                         = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-app-to-db"
+        }
+      [32m+[0m[0m tags_all                     = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-app-to-db"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                      = 5432
+    }
+
+[1m  # module.security.aws_vpc_security_group_egress_rule.bastion_internet["http"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_egress_rule" "bastion_internet" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m cidr_ipv4              = "0.0.0.0/0"
+      [32m+[0m[0m description            = "Bastion outbound HTTP for updates"
+      [32m+[0m[0m from_port              = 80
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ip_protocol            = "tcp"
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m security_group_id      = (known after apply)
+      [32m+[0m[0m security_group_rule_id = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-bastion-out-http"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-bastion-out-http"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                = 80
+    }
+
+[1m  # module.security.aws_vpc_security_group_egress_rule.bastion_internet["https"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_egress_rule" "bastion_internet" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m cidr_ipv4              = "0.0.0.0/0"
+      [32m+[0m[0m description            = "Bastion outbound HTTPS for updates"
+      [32m+[0m[0m from_port              = 443
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ip_protocol            = "tcp"
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m security_group_id      = (known after apply)
+      [32m+[0m[0m security_group_rule_id = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-bastion-out-https"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-bastion-out-https"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                = 443
+    }
+
+[1m  # module.security.aws_vpc_security_group_egress_rule.bastion_to_app["app"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_egress_rule" "bastion_to_app" {
+      [32m+[0m[0m arn                          = (known after apply)
+      [32m+[0m[0m description                  = "Bastion to app VM port 5000"
+      [32m+[0m[0m from_port                    = 5000
+      [32m+[0m[0m id                           = (known after apply)
+      [32m+[0m[0m ip_protocol                  = "tcp"
+      [32m+[0m[0m referenced_security_group_id = (known after apply)
+      [32m+[0m[0m region                       = "eu-west-1"
+      [32m+[0m[0m security_group_id            = (known after apply)
+      [32m+[0m[0m security_group_rule_id       = (known after apply)
+      [32m+[0m[0m tags                         = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-bastion-to-app-app"
+        }
+      [32m+[0m[0m tags_all                     = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-bastion-to-app-app"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                      = 5000
+    }
+
+[1m  # module.security.aws_vpc_security_group_egress_rule.bastion_to_app["ssh"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_egress_rule" "bastion_to_app" {
+      [32m+[0m[0m arn                          = (known after apply)
+      [32m+[0m[0m description                  = "Bastion to app VM port 22"
+      [32m+[0m[0m from_port                    = 22
+      [32m+[0m[0m id                           = (known after apply)
+      [32m+[0m[0m ip_protocol                  = "tcp"
+      [32m+[0m[0m referenced_security_group_id = (known after apply)
+      [32m+[0m[0m region                       = "eu-west-1"
+      [32m+[0m[0m security_group_id            = (known after apply)
+      [32m+[0m[0m security_group_rule_id       = (known after apply)
+      [32m+[0m[0m tags                         = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-bastion-to-app-ssh"
+        }
+      [32m+[0m[0m tags_all                     = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-bastion-to-app-ssh"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                      = 22
+    }
+
+[1m  # module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["app"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_ingress_rule" "app_from_bastion" {
+      [32m+[0m[0m arn                          = (known after apply)
+      [32m+[0m[0m description                  = "Port 5000 from the bastion"
+      [32m+[0m[0m from_port                    = 5000
+      [32m+[0m[0m id                           = (known after apply)
+      [32m+[0m[0m ip_protocol                  = "tcp"
+      [32m+[0m[0m referenced_security_group_id = (known after apply)
+      [32m+[0m[0m region                       = "eu-west-1"
+      [32m+[0m[0m security_group_id            = (known after apply)
+      [32m+[0m[0m security_group_rule_id       = (known after apply)
+      [32m+[0m[0m tags                         = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-app-from-bastion-app"
+        }
+      [32m+[0m[0m tags_all                     = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-app-from-bastion-app"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                      = 5000
+    }
+
+[1m  # module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["ssh"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_ingress_rule" "app_from_bastion" {
+      [32m+[0m[0m arn                          = (known after apply)
+      [32m+[0m[0m description                  = "Port 22 from the bastion"
+      [32m+[0m[0m from_port                    = 22
+      [32m+[0m[0m id                           = (known after apply)
+      [32m+[0m[0m ip_protocol                  = "tcp"
+      [32m+[0m[0m referenced_security_group_id = (known after apply)
+      [32m+[0m[0m region                       = "eu-west-1"
+      [32m+[0m[0m security_group_id            = (known after apply)
+      [32m+[0m[0m security_group_rule_id       = (known after apply)
+      [32m+[0m[0m tags                         = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-app-from-bastion-ssh"
+        }
+      [32m+[0m[0m tags_all                     = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-app-from-bastion-ssh"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                      = 22
+    }
+
+[1m  # module.security.aws_vpc_security_group_ingress_rule.bastion["http-0.0.0.0/0"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_ingress_rule" "bastion" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m cidr_ipv4              = "0.0.0.0/0"
+      [32m+[0m[0m description            = "Public HTTP, proxied to the app VM"
+      [32m+[0m[0m from_port              = 80
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ip_protocol            = "tcp"
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m security_group_id      = (known after apply)
+      [32m+[0m[0m security_group_rule_id = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-bastion-http-0.0.0.0/0"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-bastion-http-0.0.0.0/0"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                = 80
+    }
+
+[1m  # module.security.aws_vpc_security_group_ingress_rule.bastion["ssh-196.12.135.194/32"][0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_ingress_rule" "bastion" {
+      [32m+[0m[0m arn                    = (known after apply)
+      [32m+[0m[0m cidr_ipv4              = "196.12.135.194/32"
+      [32m+[0m[0m description            = "SSH from allowed admin IP"
+      [32m+[0m[0m from_port              = 22
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m ip_protocol            = "tcp"
+      [32m+[0m[0m region                 = "eu-west-1"
+      [32m+[0m[0m security_group_id      = (known after apply)
+      [32m+[0m[0m security_group_rule_id = (known after apply)
+      [32m+[0m[0m tags                   = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-bastion-ssh-196.12.135.194/32"
+        }
+      [32m+[0m[0m tags_all               = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-bastion-ssh-196.12.135.194/32"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                = 22
+    }
+
+[1m  # module.security.aws_vpc_security_group_ingress_rule.db_from_app[0m will be created
+[0m  [32m+[0m[0m resource "aws_vpc_security_group_ingress_rule" "db_from_app" {
+      [32m+[0m[0m arn                          = (known after apply)
+      [32m+[0m[0m description                  = "PostgreSQL from the app VM"
+      [32m+[0m[0m from_port                    = 5432
+      [32m+[0m[0m id                           = (known after apply)
+      [32m+[0m[0m ip_protocol                  = "tcp"
+      [32m+[0m[0m referenced_security_group_id = (known after apply)
+      [32m+[0m[0m region                       = "eu-west-1"
+      [32m+[0m[0m security_group_id            = (known after apply)
+      [32m+[0m[0m security_group_rule_id       = (known after apply)
+      [32m+[0m[0m tags                         = {
+          [32m+[0m[0m "Name" = "sokosmart-dev-db-from-app"
+        }
+      [32m+[0m[0m tags_all                     = {
+          [32m+[0m[0m "Course"      = "devops-f3"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [32m+[0m[0m "Name"        = "sokosmart-dev-db-from-app"
+          [32m+[0m[0m "Owner"       = "group-7"
+          [32m+[0m[0m "Project"     = "sokosmart"
+          [32m+[0m[0m "Repository"  = "M-a-web179/SokoSmart-Group-7-"
+        }
+      [32m+[0m[0m to_port                      = 5432
+    }
+
+[1mPlan:[0m [0m45 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  [32m+[0m[0m ami_id              = (known after apply)
+  [32m+[0m[0m app_instance_id     = (known after apply)
+  [32m+[0m[0m app_private_ip      = (known after apply)
+  [32m+[0m[0m bastion_instance_id = (known after apply)
+  [32m+[0m[0m bastion_public_ip   = (known after apply)
+  [32m+[0m[0m db_endpoint         = (known after apply)
+  [32m+[0m[0m db_name             = "sokosmart"
+  [32m+[0m[0m db_port             = (known after apply)
+  [32m+[0m[0m db_secret_arn       = (known after apply)
+  [32m+[0m[0m ecr_repository_url  = (known after apply)
+  [32m+[0m[0m nat_public_ip       = (known after apply)
+  [32m+[0m[0m private_subnet_ids  = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m public_subnet_ids   = [
+      [32m+[0m[0m (known after apply),
+      [32m+[0m[0m (known after apply),
+    ]
+  [32m+[0m[0m ssh_command         = (known after apply)
+  [32m+[0m[0m ssh_user            = "ubuntu"
+  [32m+[0m[0m vpc_id              = (known after apply)
+[90m
+ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ[0m
+
+Saved the plan to: tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "tfplan"
+Releasing state lock. This may take a few moments...

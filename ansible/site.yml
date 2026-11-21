@@ -1,8 +1,19 @@
 ---
+- name: Gather the bastion address used for the app firewall rule
+  hosts: bastion
+  gather_facts: true
+  tasks:
+    - name: Confirm the bastion private address is known
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.default_ipv4.address is defined
+
 - name: Configure and deploy the team application
   hosts: app
   become: true
   gather_facts: true
+  vars:
+    ssh_allowed_cidr: "{{ hostvars[groups['bastion'][0]].ansible_facts.default_ipv4.address }}/32"
   pre_tasks:
     - name: Verify supported host and safe deployment settings
       ansible.builtin.assert:
@@ -22,3 +33,6 @@
     - role: ssh_hardening
     - role: firewall
     - role: app
+
+- name: Configure the public reverse proxy after app deployment
+  ansible.builtin.import_playbook: proxy.yml

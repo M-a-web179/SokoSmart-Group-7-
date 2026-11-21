@@ -1,0 +1,662 @@
+﻿checkov	Scan Terraform	´╗┐2026-11-21T13:16:53.9503759Z ##[group]Run checkov -d terraform --framework terraform --compact --skip-check CKV_AWS_88,CKV_AWS_126,CKV2_AWS_41,CKV2_AWS_5,CKV2_AWS_11,CKV_AWS_394,CKV_AWS_18,CKV2_AWS_62,CKV_AWS_144,CKV_AWS_145,CKV_AWS_353,CKV_AWS_118,CKV_AWS_293,CKV_AWS_157,CKV2_AWS_30,CKV_AWS_149,CKV_AWS_136,CKV2_AWS_57
+checkov	Scan Terraform	2026-11-21T13:16:53.9505193Z ^[[36;1mcheckov -d terraform --framework terraform --compact --skip-check CKV_AWS_88,CKV_AWS_126,CKV2_AWS_41,CKV2_AWS_5,CKV2_AWS_11,CKV_AWS_394,CKV_AWS_18,CKV2_AWS_62,CKV_AWS_144,CKV_AWS_145,CKV_AWS_353,CKV_AWS_118,CKV_AWS_293,CKV_AWS_157,CKV2_AWS_30,CKV_AWS_149,CKV_AWS_136,CKV2_AWS_57^[[0m
+checkov	Scan Terraform	2026-11-21T13:16:53.9536831Z shell: /usr/bin/bash -e {0}
+checkov	Scan Terraform	2026-11-21T13:16:53.9537046Z env:
+checkov	Scan Terraform	2026-11-21T13:16:53.9537268Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+checkov	Scan Terraform	2026-11-21T13:16:53.9537613Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+checkov	Scan Terraform	2026-11-21T13:16:53.9537956Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+checkov	Scan Terraform	2026-11-21T13:16:53.9538264Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+checkov	Scan Terraform	2026-11-21T13:16:53.9538807Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+checkov	Scan Terraform	2026-11-21T13:16:53.9539225Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+checkov	Scan Terraform	2026-11-21T13:16:53.9539489Z ##[endgroup]
+checkov	Scan Terraform	2026-11-21T13:16:56.8921514Z 
+checkov	Scan Terraform	2026-11-21T13:16:56.8921997Z        _               _
+checkov	Scan Terraform	2026-11-21T13:16:56.8922356Z    ___| |__   ___  ___| | _______   __
+checkov	Scan Terraform	2026-11-21T13:16:56.8922680Z   / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+checkov	Scan Terraform	2026-11-21T13:16:56.8922983Z  | (__| | | |  __/ (__|   < (_) \ V /
+checkov	Scan Terraform	2026-11-21T13:16:56.8923456Z   \___|_| |_|\___|\___|_|\_\___/ \_/
+checkov	Scan Terraform	2026-11-21T13:16:56.8923658Z 
+checkov	Scan Terraform	2026-11-21T13:16:56.8923787Z By Prisma Cloud | version: 3.4.6 
+checkov	Scan Terraform	2026-11-21T13:16:56.8923993Z 
+checkov	Scan Terraform	2026-11-21T13:16:56.8976729Z terraform scan results:
+checkov	Scan Terraform	2026-11-21T13:16:56.8976906Z 
+checkov	Scan Terraform	2026-11-21T13:16:56.8977098Z Passed checks: 131, Failed checks: 1, Skipped checks: 2
+checkov	Scan Terraform	2026-11-21T13:16:56.8977387Z 
+checkov	Scan Terraform	2026-11-21T13:16:56.8977739Z Check: CKV_AWS_93: "Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)"
+checkov	Scan Terraform	2026-11-21T13:16:56.8978348Z 	PASSED for resource: aws_s3_bucket.state
+checkov	Scan Terraform	2026-11-21T13:16:56.8978713Z 	File: /bootstrap/main.tf:35-38
+checkov	Scan Terraform	2026-11-21T13:16:56.8979802Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24
+checkov	Scan Terraform	2026-11-21T13:16:56.8980590Z Check: CKV_AWS_54: "Ensure S3 bucket has block public policy enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.8981121Z 	PASSED for resource: aws_s3_bucket_public_access_block.state
+checkov	Scan Terraform	2026-11-21T13:16:56.8981544Z 	File: /bootstrap/main.tf:58-65
+checkov	Scan Terraform	2026-11-21T13:16:56.8982170Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-20
+checkov	Scan Terraform	2026-11-21T13:16:56.8982924Z Check: CKV_AWS_55: "Ensure S3 bucket has ignore public ACLs enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.8983581Z 	PASSED for resource: aws_s3_bucket_public_access_block.state
+checkov	Scan Terraform	2026-11-21T13:16:56.8984002Z 	File: /bootstrap/main.tf:58-65
+checkov	Scan Terraform	2026-11-21T13:16:56.8984612Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-21
+checkov	Scan Terraform	2026-11-21T13:16:56.8985406Z Check: CKV_AWS_56: "Ensure S3 bucket has 'restrict_public_buckets' enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.8985936Z 	PASSED for resource: aws_s3_bucket_public_access_block.state
+checkov	Scan Terraform	2026-11-21T13:16:56.8986344Z 	File: /bootstrap/main.tf:58-65
+checkov	Scan Terraform	2026-11-21T13:16:56.8986933Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-22
+checkov	Scan Terraform	2026-11-21T13:16:56.8987662Z Check: CKV_AWS_53: "Ensure S3 bucket has block public ACLS enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.8988155Z 	PASSED for resource: aws_s3_bucket_public_access_block.state
+checkov	Scan Terraform	2026-11-21T13:16:56.8988565Z 	File: /bootstrap/main.tf:58-65
+checkov	Scan Terraform	2026-11-21T13:16:56.8989156Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-19
+checkov	Scan Terraform	2026-11-21T13:16:56.8989996Z Check: CKV_AWS_300: "Ensure S3 lifecycle configuration sets period for aborting failed uploads"
+checkov	Scan Terraform	2026-11-21T13:16:56.8991071Z 	PASSED for resource: aws_s3_bucket_lifecycle_configuration.state
+checkov	Scan Terraform	2026-11-21T13:16:56.8991507Z 	File: /bootstrap/main.tf:68-85
+checkov	Scan Terraform	2026-11-21T13:16:56.8992144Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-300
+checkov	Scan Terraform	2026-11-21T13:16:56.8992994Z Check: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+checkov	Scan Terraform	2026-11-21T13:16:56.8993627Z 	PASSED for resource: aws.default
+checkov	Scan Terraform	2026-11-21T13:16:56.8993940Z 	File: /bootstrap/main.tf:19-30
+checkov	Scan Terraform	2026-11-21T13:16:56.8994580Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5
+checkov	Scan Terraform	2026-11-21T13:16:56.8995425Z Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.8995985Z 	PASSED for resource: aws_security_group.demo_open_ssh
+checkov	Scan Terraform	2026-11-21T13:16:56.8996386Z 	File: /demo_insecure.tf:1-12
+checkov	Scan Terraform	2026-11-21T13:16:56.8997345Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+checkov	Scan Terraform	2026-11-21T13:16:56.8998645Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.8999170Z 	PASSED for resource: aws_security_group.demo_open_ssh
+checkov	Scan Terraform	2026-11-21T13:16:56.8999554Z 	File: /demo_insecure.tf:1-12
+checkov	Scan Terraform	2026-11-21T13:16:56.9000221Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9001088Z Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+checkov	Scan Terraform	2026-11-21T13:16:56.9001640Z 	PASSED for resource: aws_security_group.demo_open_ssh
+checkov	Scan Terraform	2026-11-21T13:16:56.9002017Z 	File: /demo_insecure.tf:1-12
+checkov	Scan Terraform	2026-11-21T13:16:56.9002679Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9003798Z Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+checkov	Scan Terraform	2026-11-21T13:16:56.9004376Z 	PASSED for resource: aws_security_group.demo_open_ssh
+checkov	Scan Terraform	2026-11-21T13:16:56.9004756Z 	File: /demo_insecure.tf:1-12
+checkov	Scan Terraform	2026-11-21T13:16:56.9005746Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+checkov	Scan Terraform	2026-11-21T13:16:56.9006924Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9007475Z 	PASSED for resource: aws_security_group.demo_open_ssh
+checkov	Scan Terraform	2026-11-21T13:16:56.9007854Z 	File: /demo_insecure.tf:1-12
+checkov	Scan Terraform	2026-11-21T13:16:56.9008500Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9009344Z Check: CKV_AWS_386: "Reduce potential for WhoAMI cloud image name confusion attack"
+checkov	Scan Terraform	2026-11-21T13:16:56.9009877Z 	PASSED for resource: module.compute.aws_ami.ubuntu
+checkov	Scan Terraform	2026-11-21T13:16:56.9010272Z 	File: /modules/compute/main.tf:3-21
+checkov	Scan Terraform	2026-11-21T13:16:56.9010595Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9011256Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-supply-chain-policies/bc-aws-386
+checkov	Scan Terraform	2026-11-21T13:16:56.9012068Z Check: CKV_AWS_46: "Ensure no hard-coded secrets exist in EC2 user data"
+checkov	Scan Terraform	2026-11-21T13:16:56.9012580Z 	PASSED for resource: module.compute.aws_instance.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9012989Z 	File: /modules/compute/main.tf:34-73
+checkov	Scan Terraform	2026-11-21T13:16:56.9030534Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9031363Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-1
+checkov	Scan Terraform	2026-11-21T13:16:56.9032364Z Check: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.9032930Z 	PASSED for resource: module.compute.aws_instance.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9033540Z 	File: /modules/compute/main.tf:34-73
+checkov	Scan Terraform	2026-11-21T13:16:56.9033882Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9034607Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9035095Z Check: CKV_AWS_135: "Ensure that EC2 is EBS optimized"
+checkov	Scan Terraform	2026-11-21T13:16:56.9035391Z 	PASSED for resource: module.compute.aws_instance.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9035664Z 	File: /modules/compute/main.tf:34-73
+checkov	Scan Terraform	2026-11-21T13:16:56.9035877Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9036340Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized
+checkov	Scan Terraform	2026-11-21T13:16:56.9037021Z Check: CKV_AWS_8: "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted"
+checkov	Scan Terraform	2026-11-21T13:16:56.9037473Z 	PASSED for resource: module.compute.aws_instance.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9037740Z 	File: /modules/compute/main.tf:34-73
+checkov	Scan Terraform	2026-11-21T13:16:56.9037956Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9038491Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-13
+checkov	Scan Terraform	2026-11-21T13:16:56.9039017Z Check: CKV_AWS_46: "Ensure no hard-coded secrets exist in EC2 user data"
+checkov	Scan Terraform	2026-11-21T13:16:56.9039350Z 	PASSED for resource: module.compute.aws_instance.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9039620Z 	File: /modules/compute/main.tf:77-120
+checkov	Scan Terraform	2026-11-21T13:16:56.9039840Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9040256Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-1
+checkov	Scan Terraform	2026-11-21T13:16:56.9040773Z Check: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.9041130Z 	PASSED for resource: module.compute.aws_instance.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9041385Z 	File: /modules/compute/main.tf:77-120
+checkov	Scan Terraform	2026-11-21T13:16:56.9041603Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9042042Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9042538Z Check: CKV_AWS_135: "Ensure that EC2 is EBS optimized"
+checkov	Scan Terraform	2026-11-21T13:16:56.9042823Z 	PASSED for resource: module.compute.aws_instance.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9043242Z 	File: /modules/compute/main.tf:77-120
+checkov	Scan Terraform	2026-11-21T13:16:56.9043520Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9043992Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized
+checkov	Scan Terraform	2026-11-21T13:16:56.9044678Z Check: CKV_AWS_8: "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted"
+checkov	Scan Terraform	2026-11-21T13:16:56.9045118Z 	PASSED for resource: module.compute.aws_instance.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9045372Z 	File: /modules/compute/main.tf:77-120
+checkov	Scan Terraform	2026-11-21T13:16:56.9045583Z 	Calling File: /main.tf:53-71
+checkov	Scan Terraform	2026-11-21T13:16:56.9045978Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-13
+checkov	Scan Terraform	2026-11-21T13:16:56.9046503Z Check: CKV_AWS_161: "Ensure RDS database has IAM authentication enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.9046847Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9047135Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9047356Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9047890Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-rds-database-has-iam-authentication-enabled
+checkov	Scan Terraform	2026-11-21T13:16:56.9048520Z Check: CKV_AWS_354: "Ensure RDS Performance Insights are encrypted using KMS CMKs"
+checkov	Scan Terraform	2026-11-21T13:16:56.9048876Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9049148Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9049366Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9049773Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-354
+checkov	Scan Terraform	2026-11-21T13:16:56.9050294Z Check: CKV_AWS_16: "Ensure all data stored in the RDS is securely encrypted at rest"
+checkov	Scan Terraform	2026-11-21T13:16:56.9050788Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9051061Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9051289Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9051687Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-4
+checkov	Scan Terraform	2026-11-21T13:16:56.9052951Z Check: CKV_AWS_129: "Ensure that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.9053620Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9053897Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9054112Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9054776Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-that-respective-logs-of-amazon-relational-database-service-amazon-rds-are-enabled
+checkov	Scan Terraform	2026-11-21T13:16:56.9055733Z Check: CKV_AWS_17: "Ensure all data stored in RDS is not publicly accessible"
+checkov	Scan Terraform	2026-11-21T13:16:56.9056078Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9056355Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9056567Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9056950Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9057410Z Check: CKV_AWS_133: "Ensure that RDS instances has backup policy"
+checkov	Scan Terraform	2026-11-21T13:16:56.9057733Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9058004Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9058224Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9058760Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-rds-instances-have-backup-policy
+checkov	Scan Terraform	2026-11-21T13:16:56.9059344Z Check: CKV_AWS_211: "Ensure RDS uses a modern CaCert"
+checkov	Scan Terraform	2026-11-21T13:16:56.9059690Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9059964Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9060174Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9060646Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-rds-uses-a-modern-cacert
+checkov	Scan Terraform	2026-11-21T13:16:56.9061225Z Check: CKV_AWS_226: "Ensure DB instance gets all minor upgrades automatically"
+checkov	Scan Terraform	2026-11-21T13:16:56.9061571Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9061840Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9062055Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9062609Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-db-instance-gets-all-minor-upgrades-automatically
+checkov	Scan Terraform	2026-11-21T13:16:56.9063596Z Check: CKV_AWS_388: "Ensure AWS Aurora PostgreSQL is not exposed to local file read vulnerability"
+checkov	Scan Terraform	2026-11-21T13:16:56.9064217Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9064492Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9064707Z 	Calling File: /main.tf:37-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9064964Z Check: CKV_AWS_163: "Ensure ECR image scanning on push is enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.9065282Z 	PASSED for resource: module.ecr.aws_ecr_repository.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9065542Z 	File: /modules/ecr/main.tf:1-17
+checkov	Scan Terraform	2026-11-21T13:16:56.9065746Z 	Calling File: /main.tf:31-35
+checkov	Scan Terraform	2026-11-21T13:16:56.9066144Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-8
+checkov	Scan Terraform	2026-11-21T13:16:56.9066599Z Check: CKV_AWS_51: "Ensure ECR Image Tags are immutable"
+checkov	Scan Terraform	2026-11-21T13:16:56.9066882Z 	PASSED for resource: module.ecr.aws_ecr_repository.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9067127Z 	File: /modules/ecr/main.tf:1-17
+checkov	Scan Terraform	2026-11-21T13:16:56.9067326Z 	Calling File: /main.tf:31-35
+checkov	Scan Terraform	2026-11-21T13:16:56.9067735Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-24
+checkov	Scan Terraform	2026-11-21T13:16:56.9068414Z Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+checkov	Scan Terraform	2026-11-21T13:16:56.9068787Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9069060Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9069260Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9069646Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9070225Z Check: CKV_AWS_358: "Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order"
+checkov	Scan Terraform	2026-11-21T13:16:56.9070655Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9070921Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9071120Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9071491Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-358
+checkov	Scan Terraform	2026-11-21T13:16:56.9072228Z Check: CKV_AWS_283: "Ensure no IAM policies documents allow ALL or any AWS principal permissions to the resource"
+checkov	Scan Terraform	2026-11-21T13:16:56.9072652Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9072911Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9073246Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9073632Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-283
+checkov	Scan Terraform	2026-11-21T13:16:56.9074143Z Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+checkov	Scan Terraform	2026-11-21T13:16:56.9074517Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9074777Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9074971Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9075520Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-write-access-without-constraint
+checkov	Scan Terraform	2026-11-21T13:16:56.9076278Z Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+checkov	Scan Terraform	2026-11-21T13:16:56.9076719Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9076984Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9077181Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9077839Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+checkov	Scan Terraform	2026-11-21T13:16:56.9078676Z Check: CKV_AWS_356: "Ensure no IAM policies documents allow "*" as a statement's resource for restrictable actions"
+checkov	Scan Terraform	2026-11-21T13:16:56.9079095Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9079351Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9079543Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9079923Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-356
+checkov	Scan Terraform	2026-11-21T13:16:56.9080485Z Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+checkov	Scan Terraform	2026-11-21T13:16:56.9080892Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9081155Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9081347Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9081715Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-23
+checkov	Scan Terraform	2026-11-21T13:16:56.9082182Z Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+checkov	Scan Terraform	2026-11-21T13:16:56.9082513Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9082768Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9082985Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9083588Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-data-exfiltration
+checkov	Scan Terraform	2026-11-21T13:16:56.9084332Z Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+checkov	Scan Terraform	2026-11-21T13:16:56.9084672Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9084936Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9085130Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9085654Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-does-not-allow-privilege-escalation
+checkov	Scan Terraform	2026-11-21T13:16:56.9086264Z Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+checkov	Scan Terraform	2026-11-21T13:16:56.9086602Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9086866Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9087060Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9087566Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-credentials-exposure
+checkov	Scan Terraform	2026-11-21T13:16:56.9088315Z Check: CKV_AWS_49: "Ensure no IAM policies documents allow "*" as a statement's actions"
+checkov	Scan Terraform	2026-11-21T13:16:56.9088694Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9088966Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9089172Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9089562Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-43
+checkov	Scan Terraform	2026-11-21T13:16:56.9090149Z Check: CKV_AWS_358: "Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order"
+checkov	Scan Terraform	2026-11-21T13:16:56.9090576Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9090833Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9091036Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9091403Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-358
+checkov	Scan Terraform	2026-11-21T13:16:56.9091976Z Check: CKV_AWS_283: "Ensure no IAM policies documents allow ALL or any AWS principal permissions to the resource"
+checkov	Scan Terraform	2026-11-21T13:16:56.9092394Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9092650Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9092845Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9093323Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-283
+checkov	Scan Terraform	2026-11-21T13:16:56.9093837Z Check: CKV_AWS_111: "Ensure IAM policies does not allow write access without constraints"
+checkov	Scan Terraform	2026-11-21T13:16:56.9094203Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9094461Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9094662Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9095208Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-write-access-without-constraint
+checkov	Scan Terraform	2026-11-21T13:16:56.9095966Z Check: CKV_AWS_109: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+checkov	Scan Terraform	2026-11-21T13:16:56.9096399Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9096654Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9096846Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9097492Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+checkov	Scan Terraform	2026-11-21T13:16:56.9098324Z Check: CKV_AWS_356: "Ensure no IAM policies documents allow "*" as a statement's resource for restrictable actions"
+checkov	Scan Terraform	2026-11-21T13:16:56.9098735Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9098994Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9099191Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9099693Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-356
+checkov	Scan Terraform	2026-11-21T13:16:56.9100232Z Check: CKV_AWS_1: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+checkov	Scan Terraform	2026-11-21T13:16:56.9100629Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9100887Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9101090Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9101457Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-23
+checkov	Scan Terraform	2026-11-21T13:16:56.9101916Z Check: CKV_AWS_108: "Ensure IAM policies does not allow data exfiltration"
+checkov	Scan Terraform	2026-11-21T13:16:56.9102246Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9102497Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9102699Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9103310Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-data-exfiltration
+checkov	Scan Terraform	2026-11-21T13:16:56.9104015Z Check: CKV_AWS_110: "Ensure IAM policies does not allow privilege escalation"
+checkov	Scan Terraform	2026-11-21T13:16:56.9104363Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9104626Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9104835Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9105359Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-does-not-allow-privilege-escalation
+checkov	Scan Terraform	2026-11-21T13:16:56.9105980Z Check: CKV_AWS_107: "Ensure IAM policies does not allow credentials exposure"
+checkov	Scan Terraform	2026-11-21T13:16:56.9106335Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9106607Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9106818Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9107329Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-credentials-exposure
+checkov	Scan Terraform	2026-11-21T13:16:56.9108023Z Check: CKV_AWS_61: "Ensure AWS IAM policy does not allow assume role permission across all services"
+checkov	Scan Terraform	2026-11-21T13:16:56.9108402Z 	PASSED for resource: module.iam.aws_iam_role.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9108648Z 	File: /modules/iam/main.tf:42-45
+checkov	Scan Terraform	2026-11-21T13:16:56.9108849Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9109240Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+checkov	Scan Terraform	2026-11-21T13:16:56.9109848Z Check: CKV_AWS_393: "Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order on IAM role"
+checkov	Scan Terraform	2026-11-21T13:16:56.9110280Z 	PASSED for resource: module.iam.aws_iam_role.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9110522Z 	File: /modules/iam/main.tf:42-45
+checkov	Scan Terraform	2026-11-21T13:16:56.9110725Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9111029Z Check: CKV_AWS_60: "Ensure IAM role allows only specific services or principals to assume it"
+checkov	Scan Terraform	2026-11-21T13:16:56.9111389Z 	PASSED for resource: module.iam.aws_iam_role.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9111620Z 	File: /modules/iam/main.tf:42-45
+checkov	Scan Terraform	2026-11-21T13:16:56.9111816Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9112198Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-44
+checkov	Scan Terraform	2026-11-21T13:16:56.9112746Z Check: CKV_AWS_274: "Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy"
+checkov	Scan Terraform	2026-11-21T13:16:56.9113263Z 	PASSED for resource: module.iam.aws_iam_role.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9113497Z 	File: /modules/iam/main.tf:42-45
+checkov	Scan Terraform	2026-11-21T13:16:56.9113691Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9114076Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-274
+checkov	Scan Terraform	2026-11-21T13:16:56.9114584Z Check: CKV_AWS_63: "Ensure no IAM policies documents allow "*" as a statement's actions"
+checkov	Scan Terraform	2026-11-21T13:16:56.9114945Z 	PASSED for resource: module.iam.aws_iam_role_policy.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9115321Z 	File: /modules/iam/main.tf:47-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9115519Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9115892Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-48
+checkov	Scan Terraform	2026-11-21T13:16:56.9116436Z Check: CKV_AWS_62: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+checkov	Scan Terraform	2026-11-21T13:16:56.9116822Z 	PASSED for resource: module.iam.aws_iam_role_policy.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9117069Z 	File: /modules/iam/main.tf:47-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9117267Z 	Calling File: /main.tf:45-51
+checkov	Scan Terraform	2026-11-21T13:16:56.9117650Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+checkov	Scan Terraform	2026-11-21T13:16:56.9118135Z Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+checkov	Scan Terraform	2026-11-21T13:16:56.9118463Z 	PASSED for resource: module.network.aws_subnet.public
+checkov	Scan Terraform	2026-11-21T13:16:56.9118719Z 	File: /modules/network/main.tf:51-65
+checkov	Scan Terraform	2026-11-21T13:16:56.9119043Z 	Calling File: /main.tf:13-19
+checkov	Scan Terraform	2026-11-21T13:16:56.9119581Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+checkov	Scan Terraform	2026-11-21T13:16:56.9120204Z Check: CKV_AWS_130: "Ensure VPC subnets do not assign public IP by default"
+checkov	Scan Terraform	2026-11-21T13:16:56.9120525Z 	PASSED for resource: module.network.aws_subnet.private
+checkov	Scan Terraform	2026-11-21T13:16:56.9120781Z 	File: /modules/network/main.tf:90-102
+checkov	Scan Terraform	2026-11-21T13:16:56.9120992Z 	Calling File: /main.tf:13-19
+checkov	Scan Terraform	2026-11-21T13:16:56.9121514Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default
+checkov	Scan Terraform	2026-11-21T13:16:56.9122147Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+checkov	Scan Terraform	2026-11-21T13:16:56.9122512Z 	PASSED for resource: module.security.aws_security_group.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9122806Z 	File: /modules/security/main.tf:30-42
+checkov	Scan Terraform	2026-11-21T13:16:56.9123024Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9123567Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+checkov	Scan Terraform	2026-11-21T13:16:56.9124131Z Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9124504Z 	PASSED for resource: module.security.aws_security_group.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9124785Z 	File: /modules/security/main.tf:30-42
+checkov	Scan Terraform	2026-11-21T13:16:56.9124996Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9125571Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+checkov	Scan Terraform	2026-11-21T13:16:56.9126240Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9126585Z 	PASSED for resource: module.security.aws_security_group.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9126867Z 	File: /modules/security/main.tf:30-42
+checkov	Scan Terraform	2026-11-21T13:16:56.9127075Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9127481Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9128006Z Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+checkov	Scan Terraform	2026-11-21T13:16:56.9128369Z 	PASSED for resource: module.security.aws_security_group.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9128639Z 	File: /modules/security/main.tf:30-42
+checkov	Scan Terraform	2026-11-21T13:16:56.9128849Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9129251Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9129765Z Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+checkov	Scan Terraform	2026-11-21T13:16:56.9130128Z 	PASSED for resource: module.security.aws_security_group.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9130394Z 	File: /modules/security/main.tf:30-42
+checkov	Scan Terraform	2026-11-21T13:16:56.9130712Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9131297Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+checkov	Scan Terraform	2026-11-21T13:16:56.9132283Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9132644Z 	PASSED for resource: module.security.aws_security_group.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9132921Z 	File: /modules/security/main.tf:30-42
+checkov	Scan Terraform	2026-11-21T13:16:56.9133203Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9133605Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9134118Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+checkov	Scan Terraform	2026-11-21T13:16:56.9134472Z 	PASSED for resource: module.security.aws_security_group.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9134739Z 	File: /modules/security/main.tf:44-56
+checkov	Scan Terraform	2026-11-21T13:16:56.9135063Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9135515Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+checkov	Scan Terraform	2026-11-21T13:16:56.9136087Z Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9136447Z 	PASSED for resource: module.security.aws_security_group.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9136715Z 	File: /modules/security/main.tf:44-56
+checkov	Scan Terraform	2026-11-21T13:16:56.9136925Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9137496Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+checkov	Scan Terraform	2026-11-21T13:16:56.9138162Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9138498Z 	PASSED for resource: module.security.aws_security_group.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9138778Z 	File: /modules/security/main.tf:44-56
+checkov	Scan Terraform	2026-11-21T13:16:56.9138995Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9139398Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9139921Z Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+checkov	Scan Terraform	2026-11-21T13:16:56.9140277Z 	PASSED for resource: module.security.aws_security_group.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9140535Z 	File: /modules/security/main.tf:44-56
+checkov	Scan Terraform	2026-11-21T13:16:56.9140739Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9141132Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9141646Z Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+checkov	Scan Terraform	2026-11-21T13:16:56.9142001Z 	PASSED for resource: module.security.aws_security_group.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9142257Z 	File: /modules/security/main.tf:44-56
+checkov	Scan Terraform	2026-11-21T13:16:56.9142466Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9143141Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+checkov	Scan Terraform	2026-11-21T13:16:56.9143836Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9144183Z 	PASSED for resource: module.security.aws_security_group.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9144443Z 	File: /modules/security/main.tf:44-56
+checkov	Scan Terraform	2026-11-21T13:16:56.9144649Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9145049Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9145557Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+checkov	Scan Terraform	2026-11-21T13:16:56.9145906Z 	PASSED for resource: module.security.aws_security_group.db
+checkov	Scan Terraform	2026-11-21T13:16:56.9146170Z 	File: /modules/security/main.tf:58-70
+checkov	Scan Terraform	2026-11-21T13:16:56.9146492Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9146930Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+checkov	Scan Terraform	2026-11-21T13:16:56.9147483Z Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9147831Z 	PASSED for resource: module.security.aws_security_group.db
+checkov	Scan Terraform	2026-11-21T13:16:56.9148098Z 	File: /modules/security/main.tf:58-70
+checkov	Scan Terraform	2026-11-21T13:16:56.9148308Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9148883Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+checkov	Scan Terraform	2026-11-21T13:16:56.9149543Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9149869Z 	PASSED for resource: module.security.aws_security_group.db
+checkov	Scan Terraform	2026-11-21T13:16:56.9150126Z 	File: /modules/security/main.tf:58-70
+checkov	Scan Terraform	2026-11-21T13:16:56.9150432Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9150839Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9151367Z Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+checkov	Scan Terraform	2026-11-21T13:16:56.9151713Z 	PASSED for resource: module.security.aws_security_group.db
+checkov	Scan Terraform	2026-11-21T13:16:56.9151965Z 	File: /modules/security/main.tf:58-70
+checkov	Scan Terraform	2026-11-21T13:16:56.9152170Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9152570Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9153168Z Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+checkov	Scan Terraform	2026-11-21T13:16:56.9153519Z 	PASSED for resource: module.security.aws_security_group.db
+checkov	Scan Terraform	2026-11-21T13:16:56.9153778Z 	File: /modules/security/main.tf:58-70
+checkov	Scan Terraform	2026-11-21T13:16:56.9154005Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9154596Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+checkov	Scan Terraform	2026-11-21T13:16:56.9155287Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9155631Z 	PASSED for resource: module.security.aws_security_group.db
+checkov	Scan Terraform	2026-11-21T13:16:56.9155888Z 	File: /modules/security/main.tf:58-70
+checkov	Scan Terraform	2026-11-21T13:16:56.9156095Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9156489Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9157002Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+checkov	Scan Terraform	2026-11-21T13:16:56.9157400Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9157715Z 	File: /modules/security/main.tf:72-85
+checkov	Scan Terraform	2026-11-21T13:16:56.9157930Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9158369Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+checkov	Scan Terraform	2026-11-21T13:16:56.9158922Z Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9159326Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9159669Z 	File: /modules/security/main.tf:72-85
+checkov	Scan Terraform	2026-11-21T13:16:56.9159884Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9160452Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+checkov	Scan Terraform	2026-11-21T13:16:56.9161115Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9161490Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9161799Z 	File: /modules/security/main.tf:72-85
+checkov	Scan Terraform	2026-11-21T13:16:56.9162115Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9162516Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9163038Z Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+checkov	Scan Terraform	2026-11-21T13:16:56.9163535Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9163856Z 	File: /modules/security/main.tf:72-85
+checkov	Scan Terraform	2026-11-21T13:16:56.9164061Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9164461Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9164972Z Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+checkov	Scan Terraform	2026-11-21T13:16:56.9165362Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.bastion
+checkov	Scan Terraform	2026-11-21T13:16:56.9165669Z 	File: /modules/security/main.tf:72-85
+checkov	Scan Terraform	2026-11-21T13:16:56.9165980Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9166575Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+checkov	Scan Terraform	2026-11-21T13:16:56.9167257Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9167683Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.bastion_to_app["app"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9168034Z 	File: /modules/security/main.tf:87-100
+checkov	Scan Terraform	2026-11-21T13:16:56.9168249Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9168655Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9169174Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9169605Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.bastion_to_app["app"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9169954Z 	File: /modules/security/main.tf:87-100
+checkov	Scan Terraform	2026-11-21T13:16:56.9170160Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9170551Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9171035Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9171451Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.bastion_internet["http"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9171810Z 	File: /modules/security/main.tf:102-115
+checkov	Scan Terraform	2026-11-21T13:16:56.9172024Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9172421Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9172936Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9173453Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.bastion_internet["http"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9173819Z 	File: /modules/security/main.tf:102-115
+checkov	Scan Terraform	2026-11-21T13:16:56.9174033Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9174424Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9175005Z Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9175443Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["app"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9175794Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9176004Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9176570Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+checkov	Scan Terraform	2026-11-21T13:16:56.9177242Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9177767Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["app"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9178118Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9178328Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9178727Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9179246Z Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+checkov	Scan Terraform	2026-11-21T13:16:56.9179681Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["app"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9180028Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9180246Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9180643Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9181155Z Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+checkov	Scan Terraform	2026-11-21T13:16:56.9181780Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["app"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9182148Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9182360Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9182957Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+checkov	Scan Terraform	2026-11-21T13:16:56.9183788Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9184184Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.app_to_db
+checkov	Scan Terraform	2026-11-21T13:16:56.9184514Z 	File: /modules/security/main.tf:133-144
+checkov	Scan Terraform	2026-11-21T13:16:56.9184729Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9185145Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9185669Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9186080Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.app_to_db
+checkov	Scan Terraform	2026-11-21T13:16:56.9186397Z 	File: /modules/security/main.tf:133-144
+checkov	Scan Terraform	2026-11-21T13:16:56.9186613Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9187011Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9187501Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9187916Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.app_internet["http"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9188260Z 	File: /modules/security/main.tf:146-159
+checkov	Scan Terraform	2026-11-21T13:16:56.9188472Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9188865Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9189373Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9189809Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.app_internet["http"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9190148Z 	File: /modules/security/main.tf:146-159
+checkov	Scan Terraform	2026-11-21T13:16:56.9190360Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9190748Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9191248Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+checkov	Scan Terraform	2026-11-21T13:16:56.9191653Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.db_from_app
+checkov	Scan Terraform	2026-11-21T13:16:56.9191979Z 	File: /modules/security/main.tf:161-172
+checkov	Scan Terraform	2026-11-21T13:16:56.9192189Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9192634Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+checkov	Scan Terraform	2026-11-21T13:16:56.9193405Z Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9193814Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.db_from_app
+checkov	Scan Terraform	2026-11-21T13:16:56.9194134Z 	File: /modules/security/main.tf:161-172
+checkov	Scan Terraform	2026-11-21T13:16:56.9194341Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9194911Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+checkov	Scan Terraform	2026-11-21T13:16:56.9195570Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9195952Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.db_from_app
+checkov	Scan Terraform	2026-11-21T13:16:56.9196282Z 	File: /modules/security/main.tf:161-172
+checkov	Scan Terraform	2026-11-21T13:16:56.9196492Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9196889Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9197532Z Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+checkov	Scan Terraform	2026-11-21T13:16:56.9197947Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.db_from_app
+checkov	Scan Terraform	2026-11-21T13:16:56.9198277Z 	File: /modules/security/main.tf:161-172
+checkov	Scan Terraform	2026-11-21T13:16:56.9198497Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9198912Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9199442Z Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+checkov	Scan Terraform	2026-11-21T13:16:56.9199852Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.db_from_app
+checkov	Scan Terraform	2026-11-21T13:16:56.9200177Z 	File: /modules/security/main.tf:161-172
+checkov	Scan Terraform	2026-11-21T13:16:56.9200391Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9200974Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+checkov	Scan Terraform	2026-11-21T13:16:56.9201675Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9202095Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.bastion_to_app["ssh"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9202456Z 	File: /modules/security/main.tf:87-100
+checkov	Scan Terraform	2026-11-21T13:16:56.9202667Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9203152Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9203691Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9204120Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.bastion_to_app["ssh"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9204463Z 	File: /modules/security/main.tf:87-100
+checkov	Scan Terraform	2026-11-21T13:16:56.9204672Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9205067Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9205584Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9206004Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.bastion_internet["https"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9206365Z 	File: /modules/security/main.tf:102-115
+checkov	Scan Terraform	2026-11-21T13:16:56.9206585Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9207005Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9207524Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9207959Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.bastion_internet["https"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9208315Z 	File: /modules/security/main.tf:102-115
+checkov	Scan Terraform	2026-11-21T13:16:56.9208537Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9208929Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9209577Z Check: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9210025Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["ssh"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9210390Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9210610Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9211206Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+checkov	Scan Terraform	2026-11-21T13:16:56.9211871Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9212290Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["ssh"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9212643Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9212958Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9213438Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9213971Z Check: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+checkov	Scan Terraform	2026-11-21T13:16:56.9214432Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["ssh"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9214784Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9215000Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9215401Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+checkov	Scan Terraform	2026-11-21T13:16:56.9215922Z Check: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+checkov	Scan Terraform	2026-11-21T13:16:56.9216364Z 	PASSED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["ssh"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9216713Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9216930Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9217513Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+checkov	Scan Terraform	2026-11-21T13:16:56.9218185Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+checkov	Scan Terraform	2026-11-21T13:16:56.9218607Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.app_internet["https"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9218947Z 	File: /modules/security/main.tf:146-159
+checkov	Scan Terraform	2026-11-21T13:16:56.9219154Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9219551Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9220064Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+checkov	Scan Terraform	2026-11-21T13:16:56.9220498Z 	PASSED for resource: module.security.aws_vpc_security_group_egress_rule.app_internet["https"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9220853Z 	File: /modules/security/main.tf:146-159
+checkov	Scan Terraform	2026-11-21T13:16:56.9221063Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9221464Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+checkov	Scan Terraform	2026-11-21T13:16:56.9221990Z Check: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+checkov	Scan Terraform	2026-11-21T13:16:56.9222315Z 	PASSED for resource: aws.default
+checkov	Scan Terraform	2026-11-21T13:16:56.9222532Z 	File: /providers.tf:1-10
+checkov	Scan Terraform	2026-11-21T13:16:56.9222924Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5
+checkov	Scan Terraform	2026-11-21T13:16:56.9223524Z Check: CKV2_AWS_35: "AWS NAT Gateways should be utilized for the default route"
+checkov	Scan Terraform	2026-11-21T13:16:56.9223878Z 	PASSED for resource: module.network.aws_route_table.public
+checkov	Scan Terraform	2026-11-21T13:16:56.9224154Z 	File: /modules/network/main.tf:67-73
+checkov	Scan Terraform	2026-11-21T13:16:56.9224735Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-nat-gateways-are-utilized-for-the-default-route
+checkov	Scan Terraform	2026-11-21T13:16:56.9225509Z Check: CKV2_AWS_35: "AWS NAT Gateways should be utilized for the default route"
+checkov	Scan Terraform	2026-11-21T13:16:56.9225842Z 	PASSED for resource: module.network.aws_route.internet
+checkov	Scan Terraform	2026-11-21T13:16:56.9226100Z 	File: /modules/network/main.tf:75-79
+checkov	Scan Terraform	2026-11-21T13:16:56.9226659Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-nat-gateways-are-utilized-for-the-default-route
+checkov	Scan Terraform	2026-11-21T13:16:56.9227297Z Check: CKV2_AWS_35: "AWS NAT Gateways should be utilized for the default route"
+checkov	Scan Terraform	2026-11-21T13:16:56.9227636Z 	PASSED for resource: module.network.aws_route_table.private
+checkov	Scan Terraform	2026-11-21T13:16:56.9227913Z 	File: /modules/network/main.tf:129-135
+checkov	Scan Terraform	2026-11-21T13:16:56.9228467Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-nat-gateways-are-utilized-for-the-default-route
+checkov	Scan Terraform	2026-11-21T13:16:56.9229217Z Check: CKV2_AWS_35: "AWS NAT Gateways should be utilized for the default route"
+checkov	Scan Terraform	2026-11-21T13:16:56.9229554Z 	PASSED for resource: module.network.aws_route.private_nat
+checkov	Scan Terraform	2026-11-21T13:16:56.9229818Z 	File: /modules/network/main.tf:138-142
+checkov	Scan Terraform	2026-11-21T13:16:56.9230370Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-nat-gateways-are-utilized-for-the-default-route
+checkov	Scan Terraform	2026-11-21T13:16:56.9231016Z Check: CKV2_AWS_60: "Ensure RDS instance with copy tags to snapshots is enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.9231370Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9231637Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9232050Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-2-60
+checkov	Scan Terraform	2026-11-21T13:16:56.9232636Z Check: CKV2_AWS_44: "Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic"
+checkov	Scan Terraform	2026-11-21T13:16:56.9233170Z 	PASSED for resource: module.network.aws_route_table.public
+checkov	Scan Terraform	2026-11-21T13:16:56.9233452Z 	File: /modules/network/main.tf:67-73
+checkov	Scan Terraform	2026-11-21T13:16:56.9234160Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-route-table-with-vpc-peering-does-not-contain-routes-overly-permissive-to-all-traffic
+checkov	Scan Terraform	2026-11-21T13:16:56.9235052Z Check: CKV2_AWS_44: "Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic"
+checkov	Scan Terraform	2026-11-21T13:16:56.9235469Z 	PASSED for resource: module.network.aws_route.internet
+checkov	Scan Terraform	2026-11-21T13:16:56.9235723Z 	File: /modules/network/main.tf:75-79
+checkov	Scan Terraform	2026-11-21T13:16:56.9236418Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-route-table-with-vpc-peering-does-not-contain-routes-overly-permissive-to-all-traffic
+checkov	Scan Terraform	2026-11-21T13:16:56.9237280Z Check: CKV2_AWS_44: "Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic"
+checkov	Scan Terraform	2026-11-21T13:16:56.9237714Z 	PASSED for resource: module.network.aws_route_table.private
+checkov	Scan Terraform	2026-11-21T13:16:56.9237996Z 	File: /modules/network/main.tf:129-135
+checkov	Scan Terraform	2026-11-21T13:16:56.9238686Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-route-table-with-vpc-peering-does-not-contain-routes-overly-permissive-to-all-traffic
+checkov	Scan Terraform	2026-11-21T13:16:56.9239543Z Check: CKV2_AWS_44: "Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic"
+checkov	Scan Terraform	2026-11-21T13:16:56.9239967Z 	PASSED for resource: module.network.aws_route.private_nat
+checkov	Scan Terraform	2026-11-21T13:16:56.9240234Z 	File: /modules/network/main.tf:138-142
+checkov	Scan Terraform	2026-11-21T13:16:56.9240935Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-route-table-with-vpc-peering-does-not-contain-routes-overly-permissive-to-all-traffic
+checkov	Scan Terraform	2026-11-21T13:16:56.9241917Z Check: CKV2_AWS_69: "Ensure AWS RDS database instance configured with encryption in transit"
+checkov	Scan Terraform	2026-11-21T13:16:56.9242301Z 	PASSED for resource: module.database.aws_db_instance.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9242580Z 	File: /modules/database/main.tf:16-47
+checkov	Scan Terraform	2026-11-21T13:16:56.9243010Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-2-69
+checkov	Scan Terraform	2026-11-21T13:16:56.9243632Z Check: CKV_AWS_57: "S3 Bucket has an ACL defined which allows public WRITE access."
+checkov	Scan Terraform	2026-11-21T13:16:56.9243958Z 	PASSED for resource: aws_s3_bucket.state
+checkov	Scan Terraform	2026-11-21T13:16:56.9244187Z 	File: /bootstrap/main.tf:35-38
+checkov	Scan Terraform	2026-11-21T13:16:56.9244945Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-2-acl-write-permissions-everyone
+checkov	Scan Terraform	2026-11-21T13:16:56.9245505Z Check: CKV2_AWS_61: "Ensure that an S3 bucket has a lifecycle configuration"
+checkov	Scan Terraform	2026-11-21T13:16:56.9245810Z 	PASSED for resource: aws_s3_bucket.state
+checkov	Scan Terraform	2026-11-21T13:16:56.9246168Z 	File: /bootstrap/main.tf:35-38
+checkov	Scan Terraform	2026-11-21T13:16:56.9246570Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
+checkov	Scan Terraform	2026-11-21T13:16:56.9247074Z Check: CKV2_AWS_40: "Ensure AWS IAM policy does not allow full IAM privileges"
+checkov	Scan Terraform	2026-11-21T13:16:56.9247432Z 	PASSED for resource: module.iam.aws_iam_policy_document.assume
+checkov	Scan Terraform	2026-11-21T13:16:56.9247716Z 	File: /modules/iam/main.tf:5-14
+checkov	Scan Terraform	2026-11-21T13:16:56.9248111Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9248601Z Check: CKV2_AWS_40: "Ensure AWS IAM policy does not allow full IAM privileges"
+checkov	Scan Terraform	2026-11-21T13:16:56.9248947Z 	PASSED for resource: module.iam.aws_iam_policy_document.app
+checkov	Scan Terraform	2026-11-21T13:16:56.9249222Z 	File: /modules/iam/main.tf:16-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9249609Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-40
+checkov	Scan Terraform	2026-11-21T13:16:56.9250130Z Check: CKV_AWS_19: "Ensure all data stored in the S3 bucket is securely encrypted at rest"
+checkov	Scan Terraform	2026-11-21T13:16:56.9250469Z 	PASSED for resource: aws_s3_bucket.state
+checkov	Scan Terraform	2026-11-21T13:16:56.9250697Z 	File: /bootstrap/main.tf:35-38
+checkov	Scan Terraform	2026-11-21T13:16:56.9251119Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest
+checkov	Scan Terraform	2026-11-21T13:16:56.9251698Z Check: CKV2_AWS_19: "Ensure that all EIP addresses allocated to a VPC are attached to EC2 instances"
+checkov	Scan Terraform	2026-11-21T13:16:56.9252074Z 	PASSED for resource: module.network.aws_eip.nat
+checkov	Scan Terraform	2026-11-21T13:16:56.9252333Z 	File: /modules/network/main.tf:105-113
+checkov	Scan Terraform	2026-11-21T13:16:56.9252985Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-all-eip-addresses-allocated-to-a-vpc-are-attached-to-ec2-instances
+checkov	Scan Terraform	2026-11-21T13:16:56.9253916Z Check: CKV_AWS_20: "S3 Bucket has an ACL defined which allows public READ access."
+checkov	Scan Terraform	2026-11-21T13:16:56.9254242Z 	PASSED for resource: aws_s3_bucket.state
+checkov	Scan Terraform	2026-11-21T13:16:56.9254467Z 	File: /bootstrap/main.tf:35-38
+checkov	Scan Terraform	2026-11-21T13:16:56.9254913Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-1-acl-read-permissions-everyone
+checkov	Scan Terraform	2026-11-21T13:16:56.9255436Z Check: CKV2_AWS_6: "Ensure that S3 bucket has a Public Access block"
+checkov	Scan Terraform	2026-11-21T13:16:56.9255726Z 	PASSED for resource: aws_s3_bucket.state
+checkov	Scan Terraform	2026-11-21T13:16:56.9255948Z 	File: /bootstrap/main.tf:35-38
+checkov	Scan Terraform	2026-11-21T13:16:56.9256666Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
+checkov	Scan Terraform	2026-11-21T13:16:56.9257495Z Check: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+checkov	Scan Terraform	2026-11-21T13:16:56.9257818Z 	PASSED for resource: aws_s3_bucket.state
+checkov	Scan Terraform	2026-11-21T13:16:56.9258034Z 	File: /bootstrap/main.tf:35-38
+checkov	Scan Terraform	2026-11-21T13:16:56.9258589Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning
+checkov	Scan Terraform	2026-11-21T13:16:56.9259132Z Check: CKV2_AWS_12: "Ensure the default security group of every VPC restricts all traffic"
+checkov	Scan Terraform	2026-11-21T13:16:56.9259501Z 	PASSED for resource: module.network.aws_vpc.this
+checkov	Scan Terraform	2026-11-21T13:16:56.9259755Z 	File: /modules/network/main.tf:23-31
+checkov	Scan Terraform	2026-11-21T13:16:56.9260183Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4
+checkov	Scan Terraform	2026-11-21T13:16:56.9260709Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+checkov	Scan Terraform	2026-11-21T13:16:56.9261058Z 	FAILED for resource: aws_security_group.demo_open_ssh
+checkov	Scan Terraform	2026-11-21T13:16:56.9261307Z 	File: /demo_insecure.tf:1-12
+checkov	Scan Terraform	2026-11-21T13:16:56.9261761Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+checkov	Scan Terraform	2026-11-21T13:16:56.9262316Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+checkov	Scan Terraform	2026-11-21T13:16:56.9262913Z 	SKIPPED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["app"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9263469Z 	Suppress comment: Source is the bastion security group, not a CIDR range
+checkov	Scan Terraform	2026-11-21T13:16:56.9263786Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9264014Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9264477Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+checkov	Scan Terraform	2026-11-21T13:16:56.9265036Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+checkov	Scan Terraform	2026-11-21T13:16:56.9265482Z 	SKIPPED for resource: module.security.aws_vpc_security_group_ingress_rule.app_from_bastion["ssh"]
+checkov	Scan Terraform	2026-11-21T13:16:56.9265917Z 	Suppress comment: Source is the bastion security group, not a CIDR range
+checkov	Scan Terraform	2026-11-21T13:16:56.9266217Z 	File: /modules/security/main.tf:117-131
+checkov	Scan Terraform	2026-11-21T13:16:56.9266447Z 	Calling File: /main.tf:21-29
+checkov	Scan Terraform	2026-11-21T13:16:56.9266886Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+checkov	Scan Terraform	2026-11-21T13:16:56.9267284Z 
+checkov	Scan Terraform	2026-11-21T13:16:57.4718213Z ##[error]Process completed with exit code 1.
