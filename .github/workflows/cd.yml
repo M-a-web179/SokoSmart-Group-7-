@@ -98,6 +98,7 @@ jobs:
 
   deploy:
     needs: [lint, test, pip-audit, trivy, checkov]
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
       BASTION_IP: ${{ vars.BASTION_IP }}
@@ -173,7 +174,7 @@ jobs:
       - name: Verify /health through the bastion public IP
         run: |
           code=000
-          for i in $(seq 1 20); do
+          for _ in $(seq 1 20); do
             code="$(curl -s -o /dev/null -w '%{http_code}' "http://${BASTION_IP}/health" || true)"
             [ "$code" = "200" ] && break
             sleep 5
