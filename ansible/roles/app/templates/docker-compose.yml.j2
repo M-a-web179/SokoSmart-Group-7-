@@ -12,7 +12,10 @@ services:
         - CMD
         - python
         - -c
-        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:{{ app_container_port }}{{ app_health_path }}', timeout=5)"
+        - >-
+          import json, sys, urllib.request;
+          data = json.load(urllib.request.urlopen('http://127.0.0.1:{{ app_container_port }}{{ app_readiness_path }}', timeout=5));
+          sys.exit(0 if data.get('checks', {}).get('database') == 'ok' else 1)
       interval: 15s
       timeout: 5s
       retries: 5

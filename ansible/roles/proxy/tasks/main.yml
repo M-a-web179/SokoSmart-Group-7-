@@ -33,3 +33,15 @@
 
 - name: Apply the proxy configuration
   ansible.builtin.meta: flush_handlers
+
+- name: Verify readiness through the bastion reverse proxy
+  ansible.builtin.uri:
+    url: "http://127.0.0.1{{ app_readiness_path }}"
+    status_code: 200
+    return_content: true
+  register: proxy_readiness
+  until:
+    - proxy_readiness.status | default(0) == 200
+    - proxy_readiness.get('json', {}).get('checks', {}).get('database') == 'ok'
+  retries: 10
+  delay: 3

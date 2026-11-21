@@ -32,3 +32,6 @@
     - role: ssh_hardening
     - role: firewall
     - role: app
+
+- name: Configure the public reverse proxy after app deployment
+  ansible.builtin.import_playbook: proxy.yml

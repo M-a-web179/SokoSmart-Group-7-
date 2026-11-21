@@ -5,6 +5,14 @@
       - db_secret_arn | length > 0
     fail_msg: Pass db_secret_arn with the Terraform db_secret_arn output.
 
+- name: Check that the image uses the configured ECR registry
+  ansible.builtin.assert:
+    that:
+      - "'.dkr.ecr.' in ecr_registry"
+      - app_image.startswith(ecr_registry ~ '/')
+    fail_msg: Use an image from Terraform's ecr_repository_url or provide app_image_archive.
+  when: app_image_archive | length == 0
+
 - name: Install the AWS SDK for Python
   ansible.builtin.apt:
     name: python3-boto3
@@ -19,6 +27,37 @@
     owner: root
     group: root
     mode: "0750"
+
+- name: Install the ECR credential helper
+  ansible.builtin.apt:
+    name: amazon-ecr-credential-helper
+    state: present
+  when: app_image_archive | length == 0
+
+- name: Create the deployment Docker configuration directory
+  ansible.builtin.file:
+    path: "{{ app_dir }}/docker"
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+
+- name: Configure IAM role authentication for this ECR registry
+  ansible.builtin.copy:
+    dest: "{{ app_dir }}/docker/config.json"
+    content: "{{ {'credHelpers': {ecr_registry: 'ecr-login'}} | to_nice_json }}\n"
+    owner: root
+    group: root
+    mode: "0600"
+  when: app_image_archive | length == 0
+
+- name: Install the database connection helper
+  ansible.builtin.copy:
+    src: aws_fetch.py
+    dest: "{{ app_dir }}/aws_fetch.py"
+    owner: root
+    group: root
+    mode: "0700"
 
 - name: Copy the optional image archive to the server
   ansible.builtin.copy:
@@ -41,23 +80,14 @@
     - app_image_archive | length > 0
     - app_archive.changed or app_local_image.images | length == 0
 
-- name: Read the registry login password with the instance profile
-  ansible.builtin.script: "aws_fetch.py ecr-token {{ aws_region }}"
-  register: app_ecr_password
-  changed_when: false
-  no_log: true
-  when: app_image_archive | length == 0
-
-- name: Log in to the private registry
-  community.docker.docker_login:
-    registry_url: "{{ ecr_registry }}"
-    username: AWS
-    password: "{{ app_ecr_password.stdout | trim }}"
-  no_log: true
-  when: app_image_archive | length == 0
-
 - name: Read the database connection string from Secrets Manager
-  ansible.builtin.script: "aws_fetch.py db-url {{ aws_region }} {{ db_secret_arn }}"
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/python3
+      - "{{ app_dir }}/aws_fetch.py"
+      - db-url
+      - "{{ aws_region }}"
+      - "{{ db_secret_arn }}"
   register: app_database_url
   changed_when: false
   no_log: true
@@ -86,17 +116,21 @@
     state: present
     pull: missing
     recreate: auto
+  environment:
+    DOCKER_CONFIG: "{{ app_dir }}/docker"
 
-- name: Wait for an HTTP 200 health response
+- name: Wait for readiness with a working database connection
   ansible.builtin.uri:
-    url: "http://127.0.0.1:{{ app_port }}{{ app_health_path }}"
+    url: "http://127.0.0.1:{{ app_port }}{{ app_readiness_path }}"
     status_code: 200
     return_content: true
-  register: app_health
-  until: app_health.status | default(0) == 200
+  register: app_readiness
+  until:
+    - app_readiness.status | default(0) == 200
+    - app_readiness.get('json', {}).get('checks', {}).get('database') == 'ok'
   retries: 20
   delay: 3
 
-- name: Report application health
+- name: Report application readiness
   ansible.builtin.debug:
-    msg: "HTTP {{ app_health.status }} {{ app_health.content }}"
+    msg: "HTTP {{ app_readiness.status }}; database connection is ready"
