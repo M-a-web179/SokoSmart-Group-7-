@@ -79,6 +79,7 @@ resource "aws_instance" "app" {
   instance_type               = var.instance_type
   subnet_id                   = var.app_subnet_id
   vpc_security_group_ids      = var.app_security_group_ids
+  iam_instance_profile        = var.iam_instance_profile_name
   key_name                    = aws_key_pair.this.key_name
   associate_public_ip_address = false # private subnet, reached through the bastion
   ebs_optimized               = true
