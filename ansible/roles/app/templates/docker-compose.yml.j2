@@ -1,0 +1,27 @@
+services:
+  app:
+    image: "{{ app_image }}"
+    container_name: "{{ app_name }}"
+    restart: unless-stopped
+    ports:
+      - "{{ app_bind_address }}:{{ app_port }}:{{ app_container_port }}"
+    env_file:
+      - "{{ app_dir }}/app.env"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import json, sys, urllib.request;
+          data = json.load(urllib.request.urlopen('http://127.0.0.1:{{ app_container_port }}{{ app_readiness_path }}', timeout=5));
+          sys.exit(0 if data.get('checks', {}).get('database') == 'ok' else 1)
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"

@@ -1,8 +1,7 @@
 ---
-ssh_allowed_cidr: "203.0.113.10/32"
-app_image: "ghcr.io/YOUR_GITHUB_USERNAME/sokosmart-price:RELEASE_TAG"
-# To load a local build instead of pulling from a registry:
+# Copy to local.yml. Terraform-derived values come from terraform.generated.yml.
+# No overrides are needed for the standard ECR deployment.
+{}
+# Optional local image delivery; the database secret still comes from AWS:
 # app_image: "sokosmart-price:YOUR_COMMIT"
 # app_image_archive: /absolute/path/to/sokosmart-image.tar
-# For a lab server whose SSH port is forwarded from localhost:
-# ansible_port: 2224

@@ -1,0 +1,29 @@
+
+PLAY [Configure the bastion reverse proxy] *************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [bastion_host]
+
+TASK [proxy : Install nginx] ***************************************************
+changed: [bastion_host]
+
+TASK [proxy : Remove the default nginx site] ***********************************
+changed: [bastion_host]
+
+TASK [proxy : Install the reverse proxy configuration] *************************
+changed: [bastion_host]
+
+TASK [proxy : Check the nginx configuration] ***********************************
+ok: [bastion_host]
+
+TASK [proxy : Enable and start nginx] ******************************************
+ok: [bastion_host]
+
+TASK [proxy : Apply the proxy configuration] ***********************************
+
+RUNNING HANDLER [proxy : Reload nginx] *****************************************
+changed: [bastion_host]
+
+PLAY RECAP *********************************************************************
+bastion_host               : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

@@ -1,5 +1,11 @@
-[app]
-team-app ansible_host=SERVER_IP ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/sokosmart_f3
+# Prefer inventory_from_terraform.py: it writes the jump connection with your key.
+[bastion]
+bastion_host ansible_host=BASTION_PUBLIC_IP
 
-[app:vars]
+[app]
+app_host ansible_host=APP_PRIVATE_IP ansible_ssh_common_args='-o ProxyCommand="ssh -i ~/.ssh/sokosmart_f3 -W %h:%p ubuntu@BASTION_PUBLIC_IP"'
+
+[all:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/sokosmart_f3
 ansible_python_interpreter=/usr/bin/python3
