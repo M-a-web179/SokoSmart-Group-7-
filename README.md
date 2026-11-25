@@ -243,6 +243,9 @@ Afterwards confirm in the AWS console that the NAT gateway, Elastic IPs, RDS ins
 
 See [CHANGELOG.md](CHANGELOG.md) for the history and [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
 
+## Video Presentation Link
+https://youtu.be/vPZoZVCxVC4 
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
